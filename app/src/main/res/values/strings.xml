@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Prova1</string>
+    <string name="facebook_app_id">409908437035722</string> <string name="fb_login_protocol_scheme">fb409908437035722</string>
+
+</resources>
