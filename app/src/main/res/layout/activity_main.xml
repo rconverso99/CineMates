@@ -11,7 +11,7 @@
         android:id="@+id/listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +67,8 @@
 
     <ImageView
         android:id="@+id/barra_superiore"
-        android:layout_width="379dp"
-        android:layout_height="70dp"
+        android:layout_width="411dp"
+        android:layout_height="89dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,5 +146,16 @@
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toEndOf="@+id/textViewUsername"
         app:layout_constraintTop_toTopOf="@+id/sfondo_login" />
+
+    <Button
+        android:id="@+id/buttonRegistrati"
+        android:layout_width="115dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:text="Registrati"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sfondo_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

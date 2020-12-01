@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrazioneActivity">
+
+    <ImageView
+        android:id="@+id/sfondo_login2"
+        android:layout_width="328dp"
+        android:layout_height="433dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barra_superiore2"
+        app:srcCompat="@drawable/pannello_registrazione" />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="94dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="164dp"
+        android:text="Username"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <TextView
+        android:id="@+id/textViewNome"
+        android:layout_width="71dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="40dp"
+        android:text="Nome"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <TextView
+        android:id="@+id/textViewCognome"
+        android:layout_width="94dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="100dp"
+        android:text="Cognome"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="94dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="220dp"
+        android:text="Password"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <TextView
+        android:id="@+id/textViewConfermaPassword"
+        android:layout_width="89dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="276dp"
+        android:text="Conferma Password"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <EditText
+        android:id="@+id/editTextConfermaPassword"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="170dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="280dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsername"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="204dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsername"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="152dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:maxLength="20"
+        android:inputType="textPersonName"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsername"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <EditText
+        android:id="@+id/editTextCognome"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="170dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsername"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <EditText
+        android:id="@+id/editTextNome"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="170dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsername"
+        app:layout_constraintTop_toTopOf="@+id/sfondo_login2" />
+
+    <ImageView
+        android:id="@+id/barra_superiore2"
+        android:layout_width="424dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/banner_cinemates"
+        tools:srcCompat="@drawable/banner_cinemates" />
+
+    <Button
+        android:id="@+id/button_confermaRegistrazione"
+        android:layout_width="106dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="28dp"
+        android:text="Registrati"
+        app:layout_constraintBottom_toBottomOf="@+id/sfondo_login2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

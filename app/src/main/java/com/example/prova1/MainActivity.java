@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
     private Button myButton;
+    private Button bottoneRegistrati;
     private TextView myText;
     private Button myConnect;
     private com.facebook.login.widget.LoginButton myFBbutton;
@@ -122,6 +123,18 @@ public class MainActivity extends AppCompatActivity {
                         // App code
                     }
                 });
+
+        bottoneRegistrati=(Button) findViewById(R.id.buttonRegistrati);
+        bottoneRegistrati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegistrazioneActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
 
 
 
