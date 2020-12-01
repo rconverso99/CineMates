@@ -16,6 +16,7 @@
 
 
 
+
         <activity android:name=".RicercaFilm"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".Login" />
