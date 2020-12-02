@@ -2,8 +2,10 @@ package com.example.prova1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +42,13 @@ public class RegistrazioneActivity extends AppCompatActivity {
                     Toast toast =  Toast.makeText(RegistrazioneActivity.this, "Attenzione non tutti i campi sono stati compilati", Toast.LENGTH_LONG);
                     toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                     toast.show();
-                }else{
+                }else {
+                    /*if(username esiste nel db){
+                    Toast toast =  Toast.makeText(RegistrazioneActivity.this, "Username già in uso", Toast.LENGTH_LONG);
+                            toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                            toast.show();
+
+                }else{*/
                     if(!textPassword.getText().toString().matches(textConfermaPassword.getText().toString())){
                         Toast toast =  Toast.makeText(RegistrazioneActivity.this, "Attenzione le due password non corrispondono", Toast.LENGTH_LONG);
                         toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
@@ -51,7 +59,15 @@ public class RegistrazioneActivity extends AppCompatActivity {
                             toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                             toast.show();
                         }else{
-                            //Registrazione andata a buon fine
+                            Utente utente = new Utente();
+                            utente.setNome(textNome.getText().toString());
+                            utente.setCognome(textCognome.getText().toString());
+                            utente.setUsername(textUsername.getText().toString());
+                            utente.setPassword(textPassword.getText().toString());
+                            Intent intent = new Intent(RegistrazioneActivity.this, SceltaEmailActivity.class);
+                            intent.putExtra("utente",  utente);
+                            startActivity(intent);
+                            //Passa con put intent extra i vari dati
                         }
 
 
