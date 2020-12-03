@@ -97,6 +97,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
                                             Intent intent = new Intent(RegistrazioneActivity.this, SceltaEmailActivity.class);
                                             intent.putExtra("utente", utente);
                                             startActivity(intent);
+                                            
                                             //Passa con put intent extra i vari dati
                                         }
                                     }
