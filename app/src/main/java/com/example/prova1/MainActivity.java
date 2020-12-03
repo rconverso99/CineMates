@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         myConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getJSON("http://3.137.116.242/query.php");
+              getJSON("http://3.137.116.242/query.php");
+
 
             }
         });
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //this method is actually fetching the json string
-    private void getJSON(final String urlWebService) {
+    void getJSON(final String urlWebService) {
         /*
          * As fetching the json string is a network operation
          * And we cannot perform a network operation in main thread
@@ -176,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
          * String -> After completion it should return a string and it will be the json string
          * */
         class GetJSON extends AsyncTask<Void, Void, String> {
+
 
             //this method will be called before execution
             //you can display a progress bar or something
@@ -191,19 +193,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                try{
+                //
+                //
+                try {
                     loadIntoListView(s);
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
 
             //in this method we are fetching the json string
             @Override
             protected String doInBackground(Void... voids) {
-
-
 
                 try {
                     //creating a URL
@@ -241,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         GetJSON getJSON = new GetJSON();
         getJSON.execute();
     }
+
 
     private void loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
