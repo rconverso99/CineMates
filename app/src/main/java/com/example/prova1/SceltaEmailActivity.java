@@ -1,5 +1,6 @@
 package com.example.prova1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -20,17 +21,27 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SceltaEmailActivity extends AppCompatActivity {
 
     private static final int SELECT_PHOTO = 100;
     private Bitmap yourSelectedImage;
     private ImageView foto;
+    private Button buttonConferma;
+    private EditText textEmail;
+    String verifica;
+    ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +53,6 @@ public class SceltaEmailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Utente utente = intent.getParcelableExtra("utente");
 
-
-
         foto =(ImageView) findViewById(R.id.imgView);
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +60,60 @@ public class SceltaEmailActivity extends AppCompatActivity {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+            }
+        });
+        textEmail = (EditText) findViewById(R.id.editTextEmail);
+        buttonConferma=(Button) findViewById(R.id.buttonConferma);
+        buttonConferma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verifica = new  String();
+                String email = textEmail.getText().toString();
+                if(email.matches("")){
+                    Toast toast = Toast.makeText(SceltaEmailActivity.this, "Campo Email obbligatorio", Toast.LENGTH_LONG);
+                    toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                    toast.show();
+                }else{
+                    if(isEmailValid(email)){
+                        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                        Call<Note> call = apiInterface.searchEmail(email);
+                        call.enqueue(new Callback<Note>() {
+                            @Override
+                            public void onResponse(@NonNull Call<Note> call, @NonNull Response<Note> response) {
+                                if (response.isSuccessful() && response.body() != null) {
+                                    verifica = response.body().getMessage();
+                                      if(verifica.matches("false")){
+                                          //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
+                                      }else{
+                                          Toast toast = Toast.makeText(SceltaEmailActivity.this, "Email già in uso", Toast.LENGTH_LONG);
+                                          toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                                          toast.show();
+                                      }
+                                } else {
+                                    Toast.makeText(SceltaEmailActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            @Override
+                            public void onFailure(@NonNull Call<Note> call, @NonNull Throwable t) {
+
+                                Toast.makeText(SceltaEmailActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }else{
+                        Toast toast = Toast.makeText(SceltaEmailActivity.this, "Email non valida", Toast.LENGTH_LONG);
+                        toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                        toast.show();
+
+                    }
+                }
+
 
 
             }
         });
+
+
 
 
     }
@@ -79,6 +138,10 @@ public class SceltaEmailActivity extends AppCompatActivity {
                     foto.setImageBitmap(yourSelectedImage.createScaledBitmap(yourSelectedImage, 107 , 107  ,true));
                 }
         }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 
 
 

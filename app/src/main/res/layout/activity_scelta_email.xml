@@ -19,10 +19,10 @@
         tools:srcCompat="@drawable/banner_cinemates" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/pannelloSceltaEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barra_superiore3"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
 
     <TextView
         android:id="@+id/textViewBenvenuto"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
 
 
     <ImageView
@@ -63,7 +63,49 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail"
         app:srcCompat="@drawable/sceglifoto" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="51dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="272dp"
+        android:text="Email"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="197dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="260dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:maxLength="20"
+        android:textColor="#8A363636"
+        android:textColorHint="#8A363636"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
+
+    <Button
+        android:id="@+id/buttonConferma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Conferma"
+        app:layout_constraintBottom_toBottomOf="@+id/pannelloSceltaEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

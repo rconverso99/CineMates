@@ -89,6 +89,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
                                             toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                                             toast.show();
                                         } else {
+                                            //TUTTO OK
                                             Utente utente = new Utente();
                                             utente.setNome(textNome.getText().toString());
                                             utente.setCognome(textCognome.getText().toString());
@@ -98,7 +99,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
                                             intent.putExtra("utente", utente);
                                             startActivity(intent);
                                             
-                                            //Passa con put intent extra i vari dati
+
                                         }
                                     }
                                 }
