@@ -30,14 +30,14 @@
 
     <TextView
         android:id="@+id/textViewScegliFoto"
-        android:layout_width="180dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="172dp"
+        android:layout_width="138dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="192dp"
         android:text="Scegli una foto profilo"
         android:textColor="#8A363636"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
 
@@ -55,16 +55,18 @@
         app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgView"
-        android:layout_width="107dp"
-        android:layout_height="107dp"
+        android:layout_width="149dp"
+        android:layout_height="131dp"
         android:layout_marginTop="48dp"
         android:scaleType="centerCrop"
+        android:src="@drawable/sceglifoto"
+        app:civ_border_color="#363636"
+        app:civ_border_width="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail"
-        app:srcCompat="@drawable/sceglifoto" />
+        app:layout_constraintTop_toTopOf="@+id/pannelloSceltaEmail" />
 
     <TextView
         android:id="@+id/textViewEmail"

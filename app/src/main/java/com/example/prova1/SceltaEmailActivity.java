@@ -135,7 +135,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
 
                 }
                     foto = (ImageView) findViewById(R.id.imgView);
-                    foto.setImageBitmap(yourSelectedImage.createScaledBitmap(yourSelectedImage, 107 , 107  ,true));
+                    foto.setImageBitmap(yourSelectedImage);
                 }
         }
 

@@ -30,6 +30,8 @@ dependencies {
 
     implementation 'com.facebook.android:facebook-login:[5,6)'
     implementation 'androidx.cardview:cardview:1.0.0'
+    //Circle Image view
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
