@@ -62,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
         myConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              getJSON("http://3.137.116.242/query.php");
+
+              //getJSON("http://3.137.116.242/query.php");
+                Intent intent = new Intent(MainActivity.this, MainHomeActivity.class);
+                startActivity(intent);
 
 
             }

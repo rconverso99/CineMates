@@ -83,7 +83,11 @@ public class SceltaEmailActivity extends AppCompatActivity {
                                 if (response.isSuccessful() && response.body() != null) {
                                     verifica = response.body().getMessage();
                                       if(verifica.matches("false")){
+
                                           //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
+
+                                          Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
+                                          startActivity(intent);
                                       }else{
                                           Toast toast = Toast.makeText(SceltaEmailActivity.this, "Email già in uso", Toast.LENGTH_LONG);
                                           toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));

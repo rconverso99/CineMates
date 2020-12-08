@@ -53,6 +53,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
         textUsername = (EditText) findViewById(R.id.editTextUsername);
         textPassword = (EditText) findViewById(R.id.editTextPassword);
         textConfermaPassword = (EditText) findViewById(R.id.editTextConfermaPassword);
+        final Controller ctrl = new Controller();
 
 
         button_registrati.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +61,8 @@ public class RegistrazioneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 textVerifica = (TextView) findViewById(R.id.textViewVerifica);
                 String username = textUsername.getText().toString().trim();
-                if (textNome.getText().toString().matches("") || textCognome.getText().toString().matches("") || textUsername.getText().toString().matches("") || textPassword.getText().toString().matches("") || textConfermaPassword.getText().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegistrazioneActivity.this, "Attenzione non tutti i campi sono stati compilati", Toast.LENGTH_LONG);
-                    toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
-                    toast.show();
-                } else {
+                if (ctrl.verificaRegistrazione(textNome.getText().toString(),textCognome.getText().toString(),textUsername.getText().toString(),textPassword.getText().toString(),textConfermaPassword.getText().toString(),RegistrazioneActivity.this)) {
+
                     apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
                     Call<Note> call = apiInterface.searchUsername(username);
                     call.enqueue(new Callback<Note>() {
@@ -77,18 +75,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
                                     Toast toast = Toast.makeText(RegistrazioneActivity.this, "Username già in uso", Toast.LENGTH_LONG);
                                     toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                                     toast.show();
-
                                 } else {
-                                    if (!textPassword.getText().toString().matches(textConfermaPassword.getText().toString())) {
-                                        Toast toast = Toast.makeText(RegistrazioneActivity.this, "Attenzione le due password non corrispondono", Toast.LENGTH_LONG);
-                                        toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
-                                        toast.show();
-                                    } else {
-                                        if (textPassword.getText().length() < 7) {
-                                            Toast toast = Toast.makeText(RegistrazioneActivity.this, "Attenzione la password deve contenere almeno 8 caratteri", Toast.LENGTH_LONG);
-                                            toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
-                                            toast.show();
-                                        } else {
                                             //TUTTO OK
                                             Utente utente = new Utente();
                                             utente.setNome(textNome.getText().toString());
@@ -98,10 +85,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
                                             Intent intent = new Intent(RegistrazioneActivity.this, SceltaEmailActivity.class);
                                             intent.putExtra("utente", utente);
                                             startActivity(intent);
-                                            
 
-                                        }
-                                    }
                                 }
 
                             } else {

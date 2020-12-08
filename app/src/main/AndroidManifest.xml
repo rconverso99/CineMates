@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SceltaEmailActivity"></activity>
+        <activity android:name=".MainHomeActivity"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"></activity>
+        <activity android:name="com.bottomnavigationview.fragments.HomeFragment" />
+        <activity android:name=".SceltaEmailActivity" />
         <activity android:name=".RegistrazioneActivity" />
 
         <meta-data
