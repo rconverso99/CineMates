@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainHomeActivity"></activity>
+        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".ProfiloActivity" />
+        <activity android:name=".PlaylistActivity" />
+        <activity android:name=".MainHomeActivity" />
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
         <activity android:name="com.bottomnavigationview.fragments.HomeFragment" />
         <activity android:name=".SceltaEmailActivity" />
         <activity android:name=".RegistrazioneActivity" />

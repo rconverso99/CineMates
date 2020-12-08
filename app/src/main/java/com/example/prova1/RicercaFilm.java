@@ -80,6 +80,7 @@ public class RicercaFilm extends AppCompatActivity {
                 MovieResults results = response.body();
                 List<MovieResults.Result> listOfMovies = results.getResults();
                 MovieResults.Result firstMovie = listOfMovies.get(0);
+
                 System.out.println(firstMovie.getTitle());
                 myTextView.setText(firstMovie.getTitle());
                 String urlLink = firstMovie.getPosterPath();

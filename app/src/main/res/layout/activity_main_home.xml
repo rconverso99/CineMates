@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainHomeActivity">
 
+    <ImageView
+        android:id="@+id/topRated"
+        android:layout_width="321dp"
+        android:layout_height="149dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/top_rated_button" />
+
+    <ImageView
+        android:id="@+id/latest"
+        android:layout_width="321dp"
+        android:layout_height="149dp"
+        android:layout_marginBottom="220dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/latest_button" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -19,6 +39,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:menu='@menu/menu_navigation' />
+
+    <ImageView
+        android:id="@+id/popular"
+        android:layout_width="321dp"
+        android:layout_height="149dp"
+        android:layout_marginBottom="395dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/popular_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
