@@ -3,6 +3,7 @@ package com.example.prova1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -36,12 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
     private Button myButton;
-    private Button bottoneRegistrati;
     private TextView myText;
     private Button myConnect;
     private com.facebook.login.widget.LoginButton myFBbutton;
     private ListView listView;
-    String email_loggata;
     CallbackManager callbackManager = CallbackManager.Factory.create();
 
     private static final String BASE_URL ="http://3.137.116.242/query.php";
@@ -57,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
         myText = (TextView)findViewById(R.id.textView);
+        TextView textRegistrati = (TextView) findViewById(R.id.textRegistrati);
+        textRegistrati.setPaintFlags(textRegistrati.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        textRegistrati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegistrazioneActivity.class);
+                startActivity(intent);
+
+            }
+        });
         listView = (ListView)findViewById(R.id.listView);
         myConnect = (Button) findViewById(R.id.connetti);
         myConnect.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (isLoggedIn){
-            System.out.print("GUARDAMIIII"+Profile.getCurrentProfile().getName());
             openRicercaFilm();
         }
 
@@ -128,16 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        bottoneRegistrati=(Button) findViewById(R.id.buttonRegistrati);
-        bottoneRegistrati.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegistrazioneActivity.class);
-                startActivity(intent);
 
-
-            }
-        });
 
 
 
