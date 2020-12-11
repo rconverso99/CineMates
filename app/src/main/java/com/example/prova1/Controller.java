@@ -2,6 +2,7 @@ package com.example.prova1;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.widget.Toast;
 
@@ -9,12 +10,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 public class Controller {
 
     public boolean verificaRegistrazione(String nome, String cognome, String username, String password, String conferma_password, Activity context) {
         {
-            //String username = textUsername.getText().toString().trim();
             if (nome.matches("") || cognome.matches("") || username.matches("") || password.matches("") || conferma_password.matches("")) {
                 Toast toast = Toast.makeText(context, "Attenzione non tutti i campi sono stati compilati", Toast.LENGTH_LONG);
                 toast.getView().setBackgroundColor(context.getResources().getColor(android.R.color.holo_red_dark));
@@ -67,7 +68,18 @@ public class Controller {
 
     }
 
+    public  Bitmap getBitmapFromStringUrl(String image_string){
+        try {
+            URL url = new URL(image_string);
+            Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            return image;
+        } catch(IOException e) {
+            System.out.println(e);
+        }
+       return null;
 
+
+    }
 
 
 

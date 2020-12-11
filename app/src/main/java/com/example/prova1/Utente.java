@@ -9,7 +9,7 @@ public class Utente implements Parcelable {
     private String cognome;
     private String username;
     private String password;
-    private Image foto;
+    private String url_foto;
     private String email;
 
     protected Utente(Parcel in) {
@@ -68,12 +68,12 @@ public class Utente implements Parcelable {
         this.password = password;
     }
 
-    public Image getFoto() {
-        return foto;
+    public String getUrl_foto() {
+        return url_foto;
     }
 
-    public void setFoto(Image foto) {
-        this.foto = foto;
+    public void setUrl_foto(String url_foto) {
+        this.url_foto = url_foto;
     }
 
     public String getEmail() {
@@ -94,8 +94,9 @@ public class Utente implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nome);
         dest.writeString(this.cognome);
-        dest.writeString(this.email);
         dest.writeString(this.username);
         dest.writeString(this.password);
+        dest.writeString(this.url_foto);
+        dest.writeString(this.email);
     }
 }

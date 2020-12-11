@@ -63,7 +63,7 @@ public class CategoryActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiInterface myInterface = retrofit.create(ApiInterface.class);
-        Call<MovieResults> call = myInterface.listOfMovies(CATEGORY,API_KEY,LANGUAGE,PAGE);
+        Call<MovieResults> call = myInterface.listOfMovies(tipoCategoria(categoria),API_KEY,LANGUAGE,PAGE);
         call.enqueue(new Callback<MovieResults>() {
             @Override
             public void onResponse(Call<MovieResults> call, Response<MovieResults> response) {
@@ -90,6 +90,10 @@ public class CategoryActivity extends AppCompatActivity {
     public String tipoCategoria(String cat){
         if (cat.matches("Popular")){
             return "popular";
+        }else if(cat.matches("Upcoming")){
+            return "upcoming";
+        }else if(cat.matches("TopRated")){
+            return "top_rated";
         }
         return null;
     }

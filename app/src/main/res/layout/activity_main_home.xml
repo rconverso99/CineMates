@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".MainHomeActivity">
 
-    <ImageView
-        android:id="@+id/topRated"
-        android:layout_width="321dp"
-        android:layout_height="149dp"
-        android:layout_marginBottom="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/top_rated_button" />
 
-    <ImageView
-        android:id="@+id/latest"
-        android:layout_width="321dp"
+    <Button
+        android:id="@+id/buttonTopRated"
+        android:layout_width="290dp"
         android:layout_height="149dp"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/playlist_button"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:text="Top Rated"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/latest_button" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemBackground="@drawable/selector"
-        app:itemIconTint="@color/cardview_dark_background"
-        app:itemTextColor="@color/cardview_dark_background"
+        app:itemIconTint="@color/colorPrimaryDark"
+        app:itemTextColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +40,44 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu='@menu/menu_navigation' />
 
-    <ImageView
-        android:id="@+id/popular"
-        android:layout_width="321dp"
+
+    <Button
+        android:id="@+id/buttonPopular"
+        android:layout_width="290dp"
         android:layout_height="149dp"
-        android:layout_marginBottom="395dp"
+        android:layout_marginBottom="404dp"
+        android:background="@drawable/playlist_button"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:text="Popular"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/popular_button" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonUpcoming"
+        android:layout_width="290dp"
+        android:layout_height="149dp"
+        android:layout_marginBottom="232dp"
+        android:background="@drawable/playlist_button"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:text="Upcoming"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

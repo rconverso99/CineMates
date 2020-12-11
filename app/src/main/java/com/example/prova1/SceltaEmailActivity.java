@@ -21,6 +21,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -33,6 +34,8 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,9 +43,8 @@ import retrofit2.Response;
 
 public class SceltaEmailActivity extends AppCompatActivity {
 
-    private static final int SELECT_PHOTO = 100;
-    private Bitmap yourSelectedImage;
     private ImageView foto;
+    String image_url;
     private Button buttonConferma;
     private EditText textEmail;
     private Button next;
@@ -50,7 +52,8 @@ public class SceltaEmailActivity extends AppCompatActivity {
     Dialog myDialog;
     ApiInterface apiInterface;
     Controller ctrl;
-    int num_click;
+    private ImageView immagine_prova;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,35 +64,34 @@ public class SceltaEmailActivity extends AppCompatActivity {
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
         Intent intent = getIntent();
         ctrl = new Controller();
-        Utente utente = intent.getParcelableExtra("utente");
+        final Utente utente = intent.getParcelableExtra("utente");
 
         myDialog = new Dialog(this);
 
         foto =(ImageView) findViewById(R.id.imgView);
-
-        num_click = 0;
-
-
-
-
-       /* foto.setOnClickListener(new View.OnClickListener() {
+        image_url = "";
+        immagine_prova = (ImageView) findViewById(R.id.provaimmagine);
+        immagine_prova.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                RetrieveImageTask task = new RetrieveImageTask();
+                try {
+                    immagine_prova.setImageBitmap(task.execute(image_url).get());
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        });*/
+        });
+
         textEmail = (EditText) findViewById(R.id.editTextEmail);
         buttonConferma=(Button) findViewById(R.id.buttonConferma);
         buttonConferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verifica = new  String();
-                String email = textEmail.getText().toString();
+                verifica = "";
+                final String email = textEmail.getText().toString();
                 if(email.matches("")){
                     Toast toast = Toast.makeText(SceltaEmailActivity.this, "Campo Email obbligatorio", Toast.LENGTH_LONG);
                     toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
@@ -104,11 +106,20 @@ public class SceltaEmailActivity extends AppCompatActivity {
                                 if (response.isSuccessful() && response.body() != null) {
                                     verifica = response.body().getMessage();
                                       if(verifica.matches("false")){
+                                           if(image_url.matches("")){
+                                               Toast toast = Toast.makeText(SceltaEmailActivity.this, "Nessuna immagine selezionata", Toast.LENGTH_LONG);
+                                               toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                                               toast.show();
 
-                                          //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
+                                           }else{
+                                               utente.setUrl_foto(image_url);
+                                               utente.setEmail(email);
+                                               //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
 
-                                          Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
-                                          startActivity(intent);
+                                               Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
+                                               startActivity(intent);
+                                           }
+
                                       }else{
                                           Toast toast = Toast.makeText(SceltaEmailActivity.this, "Email già in uso", Toast.LENGTH_LONG);
                                           toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
@@ -143,52 +154,8 @@ public class SceltaEmailActivity extends AppCompatActivity {
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
-        switch (requestCode) {
-            case SELECT_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
-
-                    try {
-                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-                        yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                    foto = (ImageView) findViewById(R.id.imgView);
-                    foto.setImageBitmap(yourSelectedImage);
-                }
-        }
-
     boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-
-    public static Bitmap drawableToBitmap (Drawable drawable) {
-        Bitmap bitmap = null;
-
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if(bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     public void ShowPopup(View v){
@@ -222,6 +189,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_1.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_1));
@@ -232,6 +200,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_2.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_2));
@@ -241,6 +210,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_3.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_3));
@@ -250,6 +220,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_4.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_4));
@@ -259,6 +230,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_5.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_5));
@@ -268,6 +240,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_6.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_6));
@@ -277,6 +250,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_7.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_7));
@@ -286,6 +260,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_8.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_8));
@@ -295,6 +270,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         immagine_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image_url="http://3.137.116.242/ic_profilo_9.png";
                 foto = (ImageView) findViewById(R.id.imgView);
                 foto.setImageBitmap(BitmapFactory.decodeResource(SceltaEmailActivity.this.getResources(),
                         R.drawable.ic_profilo_9));
@@ -313,6 +289,30 @@ public class SceltaEmailActivity extends AppCompatActivity {
 
     }
 
+
+    //DA UTILIZZARE PER RECUPERARE LE IMMAGINI
+    public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
+
+        private Exception exception;
+        @Override
+        protected Bitmap doInBackground(String... image_string) {
+
+            try{
+                URL url = new URL(image_string[0]);
+                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return image;
+
+            }catch(Exception e){
+                this.exception = e;
+                return null;
+            }
+
+        }
+        protected void onPostExecute(Bitmap image) {
+            // TODO: check this.exception
+            // TODO: do something with the feed
+        }
+    }
 
 
 
