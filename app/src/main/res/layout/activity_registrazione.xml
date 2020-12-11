@@ -7,7 +7,7 @@
     tools:context=".RegistrazioneActivity">
 
     <TextView
-        android:id="@+id/textViewUsername"
+        android:id="@+id/textViewRegistrati"
         android:layout_width="82dp"
         android:layout_height="26dp"
         android:layout_marginTop="16dp"
