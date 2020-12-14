@@ -112,8 +112,10 @@ public class SceltaEmailActivity extends AppCompatActivity {
                                                toast.show();
 
                                            }else{
+                                               DaoUtente dao_utente = new DaoUtente();
                                                utente.setUrl_foto(image_url);
                                                utente.setEmail(email);
+                                               dao_utente.inserisciUtente(utente);
                                                //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
 
                                                Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
