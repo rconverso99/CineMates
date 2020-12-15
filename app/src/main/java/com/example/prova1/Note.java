@@ -16,6 +16,8 @@ public class Note {
     @SerializedName("email_utente") private String email;
     @Expose
     @SerializedName("msg") private String message;
+    @Expose
+    @SerializedName("foto_profilo") private String foto;
 
     public String getUsername() {
         return username;
@@ -64,5 +66,14 @@ public class Note {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     // nome_utente, cognome_utente, username, password_utente, email_utente
 }

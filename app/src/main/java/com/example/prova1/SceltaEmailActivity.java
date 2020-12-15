@@ -116,9 +116,9 @@ public class SceltaEmailActivity extends AppCompatActivity {
                                                utente.setUrl_foto(image_url);
                                                utente.setEmail(email);
                                                dao_utente.inserisciUtente(utente);
-                                               //Inserisci nel DB con un metodo nella Classe Dao Inserisci Utente
 
                                                Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
+                                               intent.putExtra("utente", utente);
                                                startActivity(intent);
                                            }
 

@@ -17,6 +17,7 @@ public class Utente implements Parcelable {
         cognome = in.readString();
         username = in.readString();
         password = in.readString();
+        url_foto = in.readString();
         email = in.readString();
     }
 

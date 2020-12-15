@@ -1,5 +1,7 @@
 package com.example.prova1;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -38,7 +40,14 @@ public interface ApiInterface {
             @Field("username") String username,
             @Field("pass") String password,
             @Field("email") String email,
-            @Field("fotoprofilo") String foto
+            @Field("foto_profilo") String foto
+    );
+
+    @FormUrlEncoded
+    @POST("login_aws.php")
+    Call<List<Note>> login(
+            @Field("username_utente") String username,
+            @Field("password_utente") String password
     );
 
 

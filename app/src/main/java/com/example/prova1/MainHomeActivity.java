@@ -28,6 +28,10 @@ public class MainHomeActivity extends AppCompatActivity {
         View someView = findViewById(R.id.bottom_navigation);
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        Intent intent = getIntent();
+        Utente utente = intent.getParcelableExtra("utente");
+        System.out.println(utente.getNome()+utente.getUsername()+" "+utente.getUrl_foto());
+
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
