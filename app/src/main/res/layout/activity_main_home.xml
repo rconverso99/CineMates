@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemBackground="@drawable/selector"
-        app:itemIconTint="@color/colorPrimaryDark"
-        app:itemTextColor="@color/colorPrimaryDark"
+        app:itemIconTint="#FF6615"
+        app:itemTextColor="#FF6615"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,14 +36,14 @@
         android:id="@+id/buttonPopular"
         android:layout_width="290dp"
         android:layout_height="149dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/playlist_button"
+        android:drawableRight="@drawable/ic_popular"
         android:gravity="start"
         android:paddingLeft="10dp"
-        android:text="Popular"
-        android:drawableRight="@drawable/popular"
         android:paddingRight="15dip"
         android:singleLine="true"
+        android:text="Popular"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
@@ -52,8 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonUpcoming"
@@ -64,7 +63,7 @@
         android:gravity="start"
         android:paddingLeft="10dp"
         android:text="Upcoming"
-        android:drawableRight="@drawable/upcoming"
+        android:drawableRight="@drawable/ic_upcoming"
         android:paddingRight="15dip"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -85,7 +84,7 @@
         android:gravity="start"
         android:paddingLeft="10dp"
         android:text="Top Rated"
-        android:drawableRight="@drawable/toprated"
+        android:drawableRight="@drawable/ic_toprated"
         android:paddingRight="15dip"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -110,6 +109,19 @@
         app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/playlist_button"
+        android:drawableLeft="@drawable/ic_search"
+        android:paddingTop="50dip"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/textNomeMenu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
