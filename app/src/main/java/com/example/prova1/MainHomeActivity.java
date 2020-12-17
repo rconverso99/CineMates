@@ -19,6 +19,7 @@ public class MainHomeActivity extends AppCompatActivity {
     Button popularButton;
     Button upcomingButton;
     Button topRatedButton;
+    Button searchButton;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -29,7 +30,7 @@ public class MainHomeActivity extends AppCompatActivity {
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
         Intent intent = getIntent();
-        Utente utente = intent.getParcelableExtra("utente");
+        final Utente utente = intent.getParcelableExtra("utente");
         System.out.println(utente.getNome()+utente.getUsername()+" "+utente.getUrl_foto());
 
 
@@ -43,13 +44,17 @@ public class MainHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
                 switch(menuitem.getItemId()){
                     case R.id.playlist:
-                        startActivity(new Intent(getApplicationContext(),PlaylistActivity.class));
+                        Intent intent = new Intent(getApplicationContext(),PlaylistActivity.class);
+                        intent.putExtra("utente",utente);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
                         return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),ProfiloActivity.class));
+                        Intent intent1 = new Intent(getApplicationContext(),ProfiloActivity.class);
+                        intent1.putExtra("utente",utente);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -64,6 +69,7 @@ public class MainHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainHomeActivity.this, CategoryActivity.class);
                 intent.putExtra("categoria", "Popular");
+                intent.putExtra("utente", utente);
                 startActivity(intent);
 
             }
@@ -75,6 +81,7 @@ public class MainHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainHomeActivity.this, CategoryActivity.class);
                 intent.putExtra("categoria", "Upcoming");
+                intent.putExtra("utente", utente);
                 startActivity(intent);
 
             }
@@ -86,12 +93,22 @@ public class MainHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainHomeActivity.this, CategoryActivity.class);
                 intent.putExtra("categoria", "TopRated");
+                intent.putExtra("utente", utente);
                 startActivity(intent);
 
             }
         });
 
+      searchButton = (Button) findViewById(R.id.buttonSearch);
+      searchButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              Intent intent = new Intent(MainHomeActivity.this, SearchActivity.class);
+              intent.putExtra("utente", utente);
+              startActivity(intent);
 
+          }
+      });
 
 
 

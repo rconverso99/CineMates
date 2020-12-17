@@ -60,4 +60,5 @@ public class MoviewAdapter extends RecyclerView.Adapter<MoviewAdapter.MyViewHold
             textView = (TextView) itemView.findViewById(R.id.titleMovie);
         }
     }
+
 }

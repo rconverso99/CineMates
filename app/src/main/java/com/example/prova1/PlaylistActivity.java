@@ -20,6 +20,9 @@ public class PlaylistActivity extends AppCompatActivity {
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
 
+        Intent intent = getIntent();
+        final Utente utente = intent.getParcelableExtra("utente");
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setSelectedItemId(R.id.playlist);
@@ -31,11 +34,15 @@ public class PlaylistActivity extends AppCompatActivity {
                     case R.id.playlist:
                         return true;
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainHomeActivity.class));
+                        Intent intent = new Intent(getApplicationContext(),MainHomeActivity.class);
+                        intent.putExtra("utente",utente);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),ProfiloActivity.class));
+                        Intent intent1 = new Intent(getApplicationContext(),ProfiloActivity.class);
+                        intent1.putExtra("utente",utente);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                 }

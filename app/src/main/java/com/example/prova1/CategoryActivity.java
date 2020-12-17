@@ -63,6 +63,7 @@ public class CategoryActivity extends AppCompatActivity {
         textcategoria = (TextView) findViewById(R.id.textCategoria);
         Intent intent = getIntent();
         categoria = intent.getStringExtra("categoria");
+        final Utente utente = intent.getParcelableExtra("utente");
         textcategoria.setText(categoria);
 
         //gestione film

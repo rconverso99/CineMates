@@ -50,6 +50,15 @@ public interface ApiInterface {
             @Field("password_utente") String password
     );
 
+    @GET("/3/search/movie")
+    Call<MovieResults> searchMovies(
+            @Query("api_key") String apiKey,
+            @Query("query") String query,
+            @Query("language") String language,
+            @Query("page") int page
+
+    );
+
 
 
 

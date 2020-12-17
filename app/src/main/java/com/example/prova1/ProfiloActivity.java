@@ -19,6 +19,8 @@ public class ProfiloActivity extends AppCompatActivity {
         View someView = findViewById(R.id.bottom_navigation);
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        Intent intent= getIntent();
+        final Utente utente = intent.getParcelableExtra("utente");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -29,11 +31,15 @@ public class ProfiloActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
                 switch(menuitem.getItemId()){
                     case R.id.playlist:
-                        startActivity(new Intent(getApplicationContext(),PlaylistActivity.class));
+                        Intent intent = new Intent(getApplicationContext(),PlaylistActivity.class);
+                        intent.putExtra("utente",utente);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainHomeActivity.class));
+                        Intent intent1 = new Intent(getApplicationContext(),MainHomeActivity.class);
+                        intent1.putExtra("utente",utente);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
