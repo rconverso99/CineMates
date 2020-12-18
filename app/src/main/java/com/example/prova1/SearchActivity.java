@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -60,7 +62,7 @@ SearchView searchView;
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
 
         myDialog = new Dialog(this);
-
+        final Controller ctrl = new Controller();
         Intent intent = getIntent();
         final Utente utente = intent.getParcelableExtra("utente");
 
@@ -68,13 +70,14 @@ SearchView searchView;
         searchView = (SearchView) findViewById(R.id.searchView);
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) searchView.findViewById(id);
-        textView.setTextColor(Color.rgb(255, 143, 0));
+        textView.setTextColor(Color.rgb(229, 148, 53));
+        textView.setHintTextColor(Color.rgb(229, 148, 53));
         recyclerView = (RecyclerView)findViewById(R.id.recyclerMovies);
         linearLayoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         movieslist= new ArrayList<>();
-
+        searchView.requestFocusFromTouch();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -108,7 +111,8 @@ SearchView searchView;
                             recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(SearchActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-                                    ShowPopup(movieslist.get(position));
+                                    ctrl.ShowPopup(movieslist.get(position),myDialog);
+
                                 }
 
                                 @Override
@@ -126,17 +130,6 @@ SearchView searchView;
             }
 
         });
-
-
-
-
-
-
-
-
-
-
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -166,63 +159,6 @@ SearchView searchView;
             }
         });
     }
-    public void ShowPopup(MovieResults.Result movie) {
-        myDialog.setContentView(R.layout.popupmovie);
-        TextView textClose;
-        textClose =(TextView) myDialog.findViewById(R.id.textClose2);
-        textClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-        ImageView posterMovie;
-        posterMovie = (ImageView) myDialog.findViewById(R.id.imageMovie);
-        TextView titleText;
-        titleText = (TextView) myDialog.findViewById(R.id.textTitleMovie);
-        TextView descripionText;
-        descripionText = (TextView) myDialog.findViewById(R.id.textDescriptionMovie);
-        TextView dateText;
-        dateText = (TextView) myDialog.findViewById(R.id.textDateMovie);
-        RetrieveImageTask task = new RetrieveImageTask();
-        try {
-            posterMovie.setImageBitmap(task.execute(movie.getPosterPath()).get());
-            titleText.setText(movie.getTitle());
-            descripionText.setText(movie.getOverview());
-            dateText.setText(movie.getReleaseDate());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
-
-
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-
-    }
-    public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
-
-        private Exception exception;
-        @Override
-        protected Bitmap doInBackground(String... image_string) {
-
-            try{
-                URL url = new URL(image_string[0]);
-                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                return image;
-
-            }catch(Exception e){
-                this.exception = e;
-                return null;
-            }
-
-        }
-        protected void onPostExecute(Bitmap image) {
-            // TODO: check this.exception
-            // TODO: do something with the feed
-        }
-    }
 }

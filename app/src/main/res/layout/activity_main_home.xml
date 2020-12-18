@@ -33,10 +33,52 @@
         app:layout_constraintTop_toBottomOf="@+id/textNomeMenu" />
 
     <Button
+        android:id="@+id/buttonTopRated"
+        android:layout_width="268dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/playlist_button"
+        android:drawableRight="@drawable/ic_toprated"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dip"
+        android:text="Top Rated"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpcoming" />
+
+    <Button
+        android:id="@+id/buttonUpcoming"
+        android:layout_width="268dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/playlist_button"
+        android:drawableRight="@drawable/ic_upcoming"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dip"
+        android:text="Upcoming"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPopular" />
+
+    <Button
         android:id="@+id/buttonPopular"
-        android:layout_width="290dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="268dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/playlist_button"
         android:drawableRight="@drawable/ic_popular"
         android:gravity="start"
@@ -50,51 +92,9 @@
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonUpcoming"
-        android:layout_width="290dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/playlist_button"
-        android:gravity="start"
-        android:paddingLeft="10dp"
-        android:text="Upcoming"
-        android:drawableRight="@drawable/ic_upcoming"
-        android:paddingRight="15dip"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPopular" />
-
-    <Button
-        android:id="@+id/buttonTopRated"
-        android:layout_width="290dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/playlist_button"
-        android:gravity="start"
-        android:paddingLeft="10dp"
-        android:text="Top Rated"
-        android:drawableRight="@drawable/ic_toprated"
-        android:paddingRight="15dip"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpcoming" />
 
     <TextView
         android:id="@+id/textNomeMenu"
@@ -112,14 +112,14 @@
 
     <Button
         android:id="@+id/buttonSearch"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/playlist_button"
         android:drawableLeft="@drawable/ic_search"
-        android:paddingTop="50dip"
+        android:paddingTop="34dip"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/textNomeMenu" />
 

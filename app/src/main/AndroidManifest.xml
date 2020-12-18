@@ -12,12 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
         <activity android:name=".SceltaFotoActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".ProfiloActivity" />
         <activity android:name=".PlaylistActivity" />
         <activity android:name=".MainHomeActivity" />
+
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />

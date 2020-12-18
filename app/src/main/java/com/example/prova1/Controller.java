@@ -1,9 +1,16 @@
 package com.example.prova1;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -11,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class Controller {
 
@@ -80,7 +88,63 @@ public class Controller {
 
 
     }
+    public void ShowPopup(MovieResults.Result movie, final Dialog myDialog) {
+        myDialog.setContentView(R.layout.popupmovie);
+        TextView textClose;
+        textClose =(TextView) myDialog.findViewById(R.id.textClose2);
+        textClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        ImageView posterMovie;
+        posterMovie = (ImageView) myDialog.findViewById(R.id.imageMovie);
+        TextView titleText;
+        titleText = (TextView) myDialog.findViewById(R.id.textTitleMovie);
+        TextView descripionText;
+        descripionText = (TextView) myDialog.findViewById(R.id.textDescriptionMovie);
+        TextView dateText;
+        dateText = (TextView) myDialog.findViewById(R.id.textDateMovie);
+        RetrieveImageTask task = new RetrieveImageTask();
+        try {
+            posterMovie.setImageBitmap(task.execute(movie.getPosterPath()).get());
+            titleText.setText(movie.getTitle());
+            descripionText.setText(movie.getOverview());
+            dateText.setText(movie.getReleaseDate());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
+    }
+
+    public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
+
+        private Exception exception;
+        @Override
+        protected Bitmap doInBackground(String... image_string) {
+
+            try{
+                URL url = new URL(image_string[0]);
+                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return image;
+
+            }catch(Exception e){
+                this.exception = e;
+                return null;
+            }
+
+        }
+        protected void onPostExecute(Bitmap image) {
+            // TODO: check this.exception
+            // TODO: do something with the feed
+        }
+    }
 
 
 }
