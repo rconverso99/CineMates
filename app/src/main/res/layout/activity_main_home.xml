@@ -6,6 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".MainHomeActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="300dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNomeMenu" />
+
+
+
+        <TextView
+            android:id="@+id/textNomeMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="CineMates 20"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/playlist_button"
+            android:drawableLeft="@drawable/ic_search"
+            android:paddingTop="34dip"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/textNomeMenu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -21,107 +70,109 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu='@menu/menu_navigation' />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="300dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNomeMenu" />
 
-    <Button
-        android:id="@+id/buttonTopRated"
-        android:layout_width="268dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/playlist_button"
-        android:drawableRight="@drawable/ic_toprated"
-        android:gravity="start"
-        android:paddingLeft="10dp"
-        android:paddingRight="15dip"
-        android:text="Top Rated"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpcoming" />
 
-    <Button
-        android:id="@+id/buttonUpcoming"
-        android:layout_width="268dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/playlist_button"
-        android:drawableRight="@drawable/ic_upcoming"
-        android:gravity="start"
-        android:paddingLeft="10dp"
-        android:paddingRight="15dip"
-        android:text="Upcoming"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="italic"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="540dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPopular" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/buttonPopular"
-        android:layout_width="268dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="116dp"
-        android:background="@drawable/playlist_button"
-        android:drawableRight="@drawable/ic_popular"
-        android:gravity="start"
-        android:paddingLeft="10dp"
-        android:paddingRight="15dip"
-        android:singleLine="true"
-        android:text="Popular"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainHomeActivity">
 
-    <TextView
-        android:id="@+id/textNomeMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CineMates 20"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/buttonPopular"
+                android:layout_width="268dp"
+                android:layout_height="134dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/playlist_button"
+                android:drawableRight="@drawable/ic_popular"
+                android:gravity="start"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dip"
+                android:singleLine="true"
+                android:text="Popular"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.447"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="90dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/playlist_button"
-        android:drawableLeft="@drawable/ic_search"
-        android:paddingTop="34dip"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/textNomeMenu" />
+            <Button
+                android:id="@+id/buttonUpcoming"
+                android:layout_width="268dp"
+                android:layout_height="134dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/playlist_button"
+                android:drawableRight="@drawable/ic_upcoming"
+                android:gravity="start"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dip"
+                android:text="Upcoming"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.447"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonPopular" />
+
+            <Button
+                android:id="@+id/buttonGenre"
+                android:layout_width="268dp"
+                android:layout_height="134dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/playlist_button"
+                android:drawableRight="@drawable/ic_genre"
+                android:gravity="start"
+                android:paddingLeft="8dp"
+                android:paddingRight="15dip"
+                android:text="Vari Generi"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.447"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonTopRated" />
+
+            <Button
+                android:id="@+id/buttonTopRated"
+                android:layout_width="268dp"
+                android:layout_height="134dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/playlist_button"
+                android:drawableRight="@drawable/ic_toprated"
+                android:gravity="start"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dip"
+                android:text="Top Rated"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.447"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonUpcoming" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

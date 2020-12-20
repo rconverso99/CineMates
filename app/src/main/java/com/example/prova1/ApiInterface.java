@@ -59,6 +59,13 @@ public interface ApiInterface {
 
     );
 
+    @GET("/3/discover/movie")
+    Call<MovieResults> genreMovies(
+            @Query("api_key") String apiKey,
+            @Query("with_genres") String genre
+
+    );
+
 
 
 

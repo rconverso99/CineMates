@@ -20,6 +20,7 @@ public class MainHomeActivity extends AppCompatActivity {
     Button upcomingButton;
     Button topRatedButton;
     Button searchButton;
+    Button genreButton;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -99,6 +100,16 @@ public class MainHomeActivity extends AppCompatActivity {
             }
         });
 
+        genreButton =(Button) findViewById(R.id.buttonGenre);
+        genreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainHomeActivity.this, ChooseGenreActivity.class);
+                intent.putExtra("utente", utente);
+                startActivity(intent);
+            }
+        });
+
       searchButton = (Button) findViewById(R.id.buttonSearch);
       searchButton.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -109,6 +120,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
           }
       });
+
 
 
 
