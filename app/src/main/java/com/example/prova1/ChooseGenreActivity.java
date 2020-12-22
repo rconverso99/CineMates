@@ -34,7 +34,7 @@ public class ChooseGenreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_genre);
         View someView = findViewById(R.id.bottom_navigation);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         Intent intent = getIntent();
         final Utente utente = intent.getParcelableExtra("utente");
 

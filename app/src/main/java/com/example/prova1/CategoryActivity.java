@@ -56,7 +56,7 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         View someView = findViewById(R.id.textCategoria);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         myDialog = new Dialog(this);
         final Controller ctrl = new Controller();
 

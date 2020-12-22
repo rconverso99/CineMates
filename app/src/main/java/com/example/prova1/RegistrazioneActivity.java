@@ -45,7 +45,7 @@ public class RegistrazioneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrazione);
         View someView = findViewById(R.id.barra_superiore2);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         //response_username= new String();
         button_registrati = (Button) findViewById(R.id.button_confermaRegistrazione);
         textNome = (EditText) findViewById(R.id.editTextNome);

@@ -3,6 +3,7 @@ package com.example.prova1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +60,7 @@ SearchView searchView;
         setContentView(R.layout.activity_search);
         View someView = findViewById(R.id.bottom_navigation);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
 
         myDialog = new Dialog(this);
         final Controller ctrl = new Controller();
@@ -70,8 +71,8 @@ SearchView searchView;
         searchView = (SearchView) findViewById(R.id.searchView);
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) searchView.findViewById(id);
-        textView.setTextColor(Color.rgb(229, 148, 53));
-        textView.setHintTextColor(Color.rgb(229, 148, 53));
+        textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        textView.setHintTextColor(getResources().getColor(R.color.colorPrimaryDark));
         recyclerView = (RecyclerView)findViewById(R.id.recyclerMovies);
         linearLayoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);

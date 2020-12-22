@@ -41,7 +41,7 @@ public class GenreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_genre);
         View someView = findViewById(R.id.recycler_genre);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         myDialog = new Dialog(this);
         final Controller ctrl = new Controller();
         textcategoria = (TextView) findViewById(R.id.textCategoria);

@@ -52,7 +52,6 @@ public class SceltaEmailActivity extends AppCompatActivity {
     Dialog myDialog;
     ApiInterface apiInterface;
     Controller ctrl;
-    private ImageView immagine_prova;
 
 
     @Override
@@ -61,7 +60,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scelta_email);
         View someView = findViewById(R.id.buttonConferma);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         Intent intent = getIntent();
         ctrl = new Controller();
         final Utente utente = intent.getParcelableExtra("utente");
@@ -70,20 +69,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
 
         foto =(ImageView) findViewById(R.id.imgView);
         image_url = "";
-        immagine_prova = (ImageView) findViewById(R.id.provaimmagine);
-        immagine_prova.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RetrieveImageTask task = new RetrieveImageTask();
-                try {
-                    immagine_prova.setImageBitmap(task.execute(image_url).get());
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
 
         textEmail = (EditText) findViewById(R.id.editTextEmail);
         buttonConferma=(Button) findViewById(R.id.buttonConferma);
@@ -292,29 +278,7 @@ public class SceltaEmailActivity extends AppCompatActivity {
     }
 
 
-    //DA UTILIZZARE PER RECUPERARE LE IMMAGINI
-    public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
 
-        private Exception exception;
-        @Override
-        protected Bitmap doInBackground(String... image_string) {
-
-            try{
-                URL url = new URL(image_string[0]);
-                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                return image;
-
-            }catch(Exception e){
-                this.exception = e;
-                return null;
-            }
-
-        }
-        protected void onPostExecute(Bitmap image) {
-            // TODO: check this.exception
-            // TODO: do something with the feed
-        }
-    }
 
 
 

@@ -4,13 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
+
 public class ProfiloActivity extends AppCompatActivity {
+    TextView usernameText;
+    ImageView fotoProfilo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +28,22 @@ public class ProfiloActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profilo);
         View someView = findViewById(R.id.bottom_navigation);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         Intent intent= getIntent();
         final Utente utente = intent.getParcelableExtra("utente");
+
+        usernameText = (TextView) findViewById(R.id.textUsername);
+        fotoProfilo = (ImageView) findViewById(R.id.imgProfilo);
+        usernameText.setText(utente.getUsername());
+        RetrieveImageTask task = new RetrieveImageTask();
+        try {
+            fotoProfilo.setImageBitmap(task.execute(utente.getUrl_foto()).get());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -50,4 +73,32 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
     }
+
+    //DA UTILIZZARE PER RECUPERARE LE IMMAGINI
+    public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
+
+        private Exception exception;
+        @Override
+        protected Bitmap doInBackground(String... image_string) {
+
+            try{
+                URL url = new URL(image_string[0]);
+                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return image;
+
+            }catch(Exception e){
+                this.exception = e;
+                return null;
+            }
+
+        }
+        protected void onPostExecute(Bitmap image) {
+            // TODO: check this.exception
+            // TODO: do something with the feed
+        }
+    }
+
+
+
+
 }

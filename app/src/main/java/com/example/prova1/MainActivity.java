@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         View someView = findViewById(R.id.barra_superiore);
         View root = someView.getRootView();
-        root.setBackgroundColor(getResources().getColor(android.R.color.white));
+        root.setBackgroundColor(getResources().getColor(R.color.lightGray));
         TextView textRegistrati = (TextView) findViewById(R.id.textRegistrati);
         textRegistrati.setPaintFlags(textRegistrati.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         textRegistrati.setOnClickListener(new View.OnClickListener() {

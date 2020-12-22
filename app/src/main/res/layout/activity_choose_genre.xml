@@ -45,7 +45,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="537dp"
+        android:layout_height="532dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -59,7 +59,7 @@
                 android:id="@+id/buttonAction"
                 android:layout_width="150dp"
                 android:layout_height="88dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_genre_action"
                 android:gravity="start"
                 android:paddingLeft="10dp"
@@ -80,7 +80,7 @@
                 android:id="@+id/buttonAdventure"
                 android:layout_width="150dp"
                 android:layout_height="88dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_genre_adventure"
                 android:gravity="start"
                 android:paddingLeft="10dp"
