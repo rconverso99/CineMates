@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,6 +35,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText textUsername;
     private EditText textPassword;
     private com.facebook.login.widget.LoginButton myFBbutton;
+    private static int SPLASH_TIME_OUT = 3000;
     ApiInterface apiInterface;
 
     CallbackManager callbackManager = CallbackManager.Factory.create();
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_main);
         View someView = findViewById(R.id.barra_superiore);
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(R.color.lightGray));
