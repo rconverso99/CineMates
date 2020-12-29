@@ -15,18 +15,33 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
+import com.example.prova1.ui.DaoPlaylist;
+
+import org.w3c.dom.Node;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Controller {
+
+    ApiInterface apiInterface;
 
     public boolean verificaRegistrazione(String nome, String cognome, String username, String password, String conferma_password, Activity context) {
         {
@@ -94,8 +109,43 @@ public class Controller {
 
 
     }
-    public void ShowPopup(MovieResults.Result movie, final Dialog myDialog) {
+    public void ShowPopup(final MovieResults.Result movie, final Dialog myDialog, final Utente user) {
         myDialog.setContentView(R.layout.popupmovie);
+        final Button addPreferiti;
+        final Button addDaVedere;
+        addPreferiti =(Button) myDialog.findViewById(R.id.addPreferiti);
+        addDaVedere = (Button) myDialog.findViewById(R.id.addDaVedere);
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<List<Note>> call = apiInterface.recupera_playlist(user.getUsername());
+        call.enqueue(new Callback<List<Note>>() {
+            @Override
+            public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    for(Note i : response.body()){
+                        if(i.getTipo_playlist().matches("pref")){
+                            if(i.getCod_film()!= null && i.getCod_film().matches(movie.getId().toString())){
+                                setButtonRimuoviPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"RIMUOVI DAI PREFERITI");
+                            }
+                        }
+
+                    }
+                    for(Note i : response.body()){
+                        if(i.getTipo_playlist().matches("davedere")){
+                            if(i.getCod_film()!= null && i.getCod_film().matches(movie.getId().toString())){
+                                setButtonRimuoviPlaylist(addDaVedere,myDialog,R.drawable.ic_davedere,"RIMUOVI DAI DA VEDERE");
+                            }
+                        }
+
+                    }
+
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Note>> call, Throwable t) {
+
+            }
+        });
         TextView textClose;
         textClose =(TextView) myDialog.findViewById(R.id.textClose2);
         textClose.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +174,45 @@ public class Controller {
             e.printStackTrace();
         }
 
+       addPreferiti.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if(addPreferiti.getText().toString().matches("RIMUOVI DAI PREFERITI")){
+                   //RIMUOVI DALLA PLAYLIST
+                   //MODIFICA COLORI BOTTONE
+
+
+               }else{
+                   setButtonRimuoviPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"RIMUOVI DAI PREFERITI");
+                   DaoPlaylist daoPlaylist = new DaoPlaylist();
+                   daoPlaylist.insertPlaylist(user.getUsername(),"pref",movie.getId().toString());
+
+               }
+
+
+
+           }
+       });
+
+        addDaVedere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(addDaVedere.getText().toString().matches("RIMUOVI DAI DA VEDERE")){
+                    //RIMUOVI DALLA PLAYLIST
+                    //MODIFICA COLORI BOTTONE
+
+
+                }else{
+                    setButtonRimuoviPlaylist(addDaVedere,myDialog,R.drawable.ic_davedere,"RIMUOVI DAI DA VEDERE");
+                    DaoPlaylist daoPlaylist = new DaoPlaylist();
+                    daoPlaylist.insertPlaylist(user.getUsername(),"davedere",movie.getId().toString());
+
+                }
+
+
+            }
+        });
+
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
 
@@ -150,6 +239,19 @@ public class Controller {
             // TODO: check this.exception
             // TODO: do something with the feed
         }
+    }
+
+    public void setButtonRimuoviPlaylist(Button btn,final Dialog myDialog, int drawable_icon, String text){
+        btn.setText(text);
+       btn.setBackgroundResource(R.drawable.button_genre_horror);
+        btn.setTextColor(Color.RED);
+        int tintColor = ContextCompat.getColor(myDialog.getContext(), android.R.color.holo_red_dark);
+
+        Drawable drawable = ContextCompat.getDrawable(myDialog.getContext(), drawable_icon);
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable.mutate(), tintColor);
+        drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        btn.setCompoundDrawables(drawable, null, null, null);
     }
 
 

@@ -74,7 +74,7 @@ public class GenreActivity extends AppCompatActivity {
                 recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(GenreActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        ctrl.ShowPopup(listOfMovies.get(position),myDialog);
+                        ctrl.ShowPopup(listOfMovies.get(position),myDialog,utente);
                     }
 
                     @Override

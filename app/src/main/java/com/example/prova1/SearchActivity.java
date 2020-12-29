@@ -112,7 +112,7 @@ SearchView searchView;
                             recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(SearchActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-                                    ctrl.ShowPopup(movieslist.get(position),myDialog);
+                                    ctrl.ShowPopup(movieslist.get(position),myDialog,utente);
 
                                 }
 

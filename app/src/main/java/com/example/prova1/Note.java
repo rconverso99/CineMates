@@ -18,6 +18,46 @@ public class Note {
     @SerializedName("msg") private String message;
     @Expose
     @SerializedName("foto_profilo") private String foto;
+    @Expose
+    @SerializedName("nome") private String nome_playlist;
+    @Expose
+    @SerializedName("cod_playlist") private String cod_playlist;
+    @Expose
+    @SerializedName("tipo_playlist") private String tipo_playlist;
+    @Expose
+    @SerializedName("cod_film") private String cod_film;
+
+    public String getNome_playlist() {
+        return nome_playlist;
+    }
+
+    public void setNome_playlist(String nome_playlist) {
+        this.nome_playlist = nome_playlist;
+    }
+
+    public String getCod_playlist() {
+        return cod_playlist;
+    }
+
+    public void setCod_playlist(String cod_playlist) {
+        this.cod_playlist = cod_playlist;
+    }
+
+    public String getTipo_playlist() {
+        return tipo_playlist;
+    }
+
+    public void setTipo_playlist(String tipo_playlist) {
+        this.tipo_playlist = tipo_playlist;
+    }
+
+    public String getCod_film() {
+        return cod_film;
+    }
+
+    public void setCod_film(String cod_film) {
+        this.cod_film = cod_film;
+    }
 
     public String getUsername() {
         return username;

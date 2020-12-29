@@ -66,6 +66,22 @@ public interface ApiInterface {
 
     );
 
+    @FormUrlEncoded
+    @POST("recuperaplaylist_aws.php")
+    Call<List<Note>> recupera_playlist(
+            @Field("username") String username
+    );
+
+ @FormUrlEncoded
+ @POST("inserisci_film_aws.php")
+ Call<Note> inserisci_film(
+         @Field("nome") String nome_playlist,
+         @Field("username") String username,
+         @Field("cod_playlist") String cod_playlist,
+         @Field("tipo_playlist") String tipo_playlist,
+         @Field("cod_film") String cod_film
+ );
+
 
 
 
