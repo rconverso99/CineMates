@@ -79,7 +79,15 @@ public interface ApiInterface {
          @Field("username") String username,
          @Field("cod_playlist") String cod_playlist,
          @Field("tipo_playlist") String tipo_playlist,
-         @Field("cod_film") String cod_film
+         @Field("cod_film") int cod_film
+ );
+
+ @GET("/3/movie/{id}")
+ Call<MovieResults> movieById(
+         @Path("id") Integer id,
+         @Query("api_key") String apiKey
+
+
  );
 
 

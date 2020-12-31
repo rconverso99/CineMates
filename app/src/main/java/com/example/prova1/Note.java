@@ -25,7 +25,7 @@ public class Note {
     @Expose
     @SerializedName("tipo_playlist") private String tipo_playlist;
     @Expose
-    @SerializedName("cod_film") private String cod_film;
+    @SerializedName("cod_film") private Integer cod_film;
 
     public String getNome_playlist() {
         return nome_playlist;
@@ -51,11 +51,11 @@ public class Note {
         this.tipo_playlist = tipo_playlist;
     }
 
-    public String getCod_film() {
+    public Integer getCod_film() {
         return cod_film;
     }
 
-    public void setCod_film(String cod_film) {
+    public void setCod_film(Integer cod_film) {
         this.cod_film = cod_film;
     }
 

@@ -122,8 +122,11 @@ public class Controller {
             public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     for(Note i : response.body()){
+                        System.out.println("PROVAAA"+i.getCod_film());
+                        System.out.println("PROVAAA"+i.getTipo_playlist());
+                        System.out.println("PROVAAA"+user.getUsername());
                         if(i.getTipo_playlist().matches("pref")){
-                            if(i.getCod_film()!= null && i.getCod_film().matches(movie.getId().toString())){
+                            if(i.getCod_film()!= 0 && i.getCod_film().equals(movie.getId())){
                                 setButtonRimuoviPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"RIMUOVI DAI PREFERITI");
                             }
                         }
@@ -131,7 +134,7 @@ public class Controller {
                     }
                     for(Note i : response.body()){
                         if(i.getTipo_playlist().matches("davedere")){
-                            if(i.getCod_film()!= null && i.getCod_film().matches(movie.getId().toString())){
+                            if(i.getCod_film()!= null && i.getCod_film().intValue()==movie.getId()){
                                 setButtonRimuoviPlaylist(addDaVedere,myDialog,R.drawable.ic_davedere,"RIMUOVI DAI DA VEDERE");
                             }
                         }
@@ -185,7 +188,7 @@ public class Controller {
                }else{
                    setButtonRimuoviPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"RIMUOVI DAI PREFERITI");
                    DaoPlaylist daoPlaylist = new DaoPlaylist();
-                   daoPlaylist.insertPlaylist(user.getUsername(),"pref",movie.getId().toString());
+                   daoPlaylist.insertPlaylist(user.getUsername(),"pref",movie.getId());
 
                }
 
@@ -205,7 +208,7 @@ public class Controller {
                 }else{
                     setButtonRimuoviPlaylist(addDaVedere,myDialog,R.drawable.ic_davedere,"RIMUOVI DAI DA VEDERE");
                     DaoPlaylist daoPlaylist = new DaoPlaylist();
-                    daoPlaylist.insertPlaylist(user.getUsername(),"davedere",movie.getId().toString());
+                    daoPlaylist.insertPlaylist(user.getUsername(),"davedere",movie.getId());
 
                 }
 

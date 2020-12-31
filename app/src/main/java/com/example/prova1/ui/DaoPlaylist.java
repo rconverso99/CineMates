@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class DaoPlaylist {
     ApiInterface apiInterface;
-    public void insertPlaylist(String username, String tipo , String cod_movie){
+    public void insertPlaylist(String username, String tipo , Integer cod_movie){
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<Note> call = apiInterface.inserisci_film("",username,"",tipo,cod_movie);
         call.enqueue(new Callback<Note>() {

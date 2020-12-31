@@ -7,10 +7,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PlaylistActivity extends AppCompatActivity {
+
+    ApiInterface apiInterface;
+    Button preferitiButton;
+    Button daVedereButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +62,34 @@ public class PlaylistActivity extends AppCompatActivity {
                 return false;
             }
         });
+        preferitiButton= (Button) findViewById(R.id.buttonPreferiti);
+        preferitiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlaylistActivity.this, PlaylistSceltaActivity.class);
+                intent.putExtra("nome_playlist", "Preferiti");
+                intent.putExtra("utente", utente);
+                startActivity(intent);
+
+            }
+        });
+
+        daVedereButton= (Button) findViewById(R.id.buttonDaVedere);
+        daVedereButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlaylistActivity.this, PlaylistSceltaActivity.class);
+                intent.putExtra("nome_playlist", "Da Vedere");
+                intent.putExtra("utente", utente);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
+
     }
 }

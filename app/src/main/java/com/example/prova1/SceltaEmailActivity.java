@@ -31,6 +31,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prova1.ui.DaoPlaylist;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -99,9 +101,12 @@ public class SceltaEmailActivity extends AppCompatActivity {
 
                                            }else{
                                                DaoUtente dao_utente = new DaoUtente();
+                                               DaoPlaylist dao_playlist = new DaoPlaylist();
                                                utente.setUrl_foto(image_url);
                                                utente.setEmail(email);
                                                dao_utente.inserisciUtente(utente);
+                                               dao_playlist.insertPlaylist(utente.getUsername(),"pref",0000);
+                                               dao_playlist.insertPlaylist(utente.getUsername(),"davedere",0000);
 
                                                Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
                                                intent.putExtra("utente", utente);
