@@ -17,12 +17,17 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.prova1.adapter.MoviewAdapter;
+import com.example.prova1.adapter.RecyclerItemClickListener;
 import com.example.prova1.ui.DaoPlaylist;
 
 import org.w3c.dom.Node;
@@ -32,12 +37,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller {
 
@@ -255,6 +263,103 @@ public class Controller {
         DrawableCompat.setTint(drawable.mutate(), tintColor);
         drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         btn.setCompoundDrawables(drawable, null, null, null);
+    }
+
+
+    public void showPopupSearch(final Activity activity, final Dialog myDialog, final Utente user){
+
+        final String BASE_URL = "https://api.themoviedb.org";
+         final int PAGE = 1;
+        final String API_KEY = "2e3034b8c110830b946972c7d30f5cb5";
+         final String LANGUAGE = "ita";
+        myDialog.setContentView(R.layout.popupsearch);
+        TextView textClose;
+        textClose =(TextView) myDialog.findViewById(R.id.textClose3);
+        textClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.recreate();
+                myDialog.dismiss();
+            }
+        });
+        SearchView searchView;
+        searchView= (SearchView) myDialog.findViewById(R.id.searchView2);
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) searchView.findViewById(id);
+        textView.setTextColor(activity.getResources().getColor(R.color.colorPrimaryDark));
+        textView.setHintTextColor(activity.getResources().getColor(R.color.colorPrimaryDark));
+        final RecyclerView recyclerView;
+        recyclerView = (RecyclerView)myDialog.findViewById(R.id.recyclerMoviesToAdd);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager= new LinearLayoutManager(activity.getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        final List<MovieResults.Result> movieslist= new ArrayList<>();
+        searchView.requestFocusFromTouch();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if (newText == null || newText.matches("") || newText.matches(" ") || newText.contains("  ")) {
+
+                } else {
+                    if(!movieslist.isEmpty()){
+                        movieslist.clear();}
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    ApiInterface myInterface = retrofit.create(ApiInterface.class);
+                    Call<MovieResults> call = myInterface.searchMovies(API_KEY, newText, LANGUAGE, PAGE);
+                    call.enqueue(new Callback<MovieResults>() {
+                        @Override
+                        public void onResponse(Call<MovieResults> call, Response<MovieResults> response) {
+                            MovieResults results = response.body();
+                            final List<MovieResults.Result> listOfMovies = results.getResults();
+                            movieslist.addAll(listOfMovies);
+                            final MoviewAdapter adapter;
+                            adapter = new MoviewAdapter(movieslist, activity.getApplicationContext());
+                            recyclerView.setAdapter(adapter);
+
+                            recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(activity.getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+
+                                    ShowPopup(movieslist.get(position),myDialog ,user);
+
+                                }
+
+                                @Override
+                                public void onLongItemClick(View view, int position) {
+                                }}));
+                        }
+
+                        @Override
+                        public void onFailure(Call<MovieResults> call, Throwable t) {
+                            t.printStackTrace();
+                        }
+                    });
+                }
+                return false;
+            }
+
+        });
+
+
+
+
+
+
+
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 
 

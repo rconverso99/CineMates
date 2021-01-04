@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private MoviewAdapter adapter;
     private Dialog myDialog;
+    private Dialog myDialogSearch;
+    private Button addButton;
     ApiInterface apiInterface;
     static ArrayList<MovieResults> MoviesList;
 
@@ -49,6 +52,7 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
         final Utente utente = intent.getParcelableExtra("utente");
         textplaylist.setText(nome_playlist);
         MoviesList=new ArrayList<>();
+
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerPlaylist);
         linearLayoutManager= new LinearLayoutManager(this);
@@ -91,7 +95,14 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
 
             }
         });
-
+      addButton= findViewById(R.id.addMovie);
+      addButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              myDialogSearch = new Dialog(PlaylistSceltaActivity.this);
+             ctrl.showPopupSearch(PlaylistSceltaActivity.this,myDialogSearch,utente);
+          }
+      });
 
 
 
