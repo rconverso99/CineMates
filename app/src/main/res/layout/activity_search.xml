@@ -36,6 +36,11 @@
         android:layout_marginTop="16dp"
         android:queryHint="Search"
         android:background="@drawable/custom_searchview"
+        android:searchIcon="@drawable/ic_searchview_search"
+        android:closeIcon="@drawable/ic_searchview_close"
+        android:searchHintIcon="@drawable/ic_searchview_search"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"

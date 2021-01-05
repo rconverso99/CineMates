@@ -71,8 +71,8 @@ SearchView searchView;
         searchView = (SearchView) findViewById(R.id.searchView);
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) searchView.findViewById(id);
-        textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        textView.setHintTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        textView.setTextColor(getResources().getColor(R.color.lightPrimary));
+        textView.setHintTextColor(getResources().getColor(R.color.lightPrimary));
         recyclerView = (RecyclerView)findViewById(R.id.recyclerMovies);
         linearLayoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
@@ -112,7 +112,7 @@ SearchView searchView;
                             recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(SearchActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-                                    ctrl.ShowPopup(movieslist.get(position),myDialog,utente);
+                                    ctrl.ShowPopup(movieslist.get(position),myDialog,utente,null);
 
                                 }
 

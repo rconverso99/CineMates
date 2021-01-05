@@ -89,7 +89,7 @@ public class CategoryActivity extends AppCompatActivity {
                 recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(CategoryActivity.this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                ctrl.ShowPopup(listOfMovies.get(position),myDialog,utente);
+                                ctrl.ShowPopup(listOfMovies.get(position),myDialog,utente,null);
                             }
 
                             @Override

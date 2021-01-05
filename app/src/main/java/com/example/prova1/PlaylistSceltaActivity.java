@@ -149,6 +149,7 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
                         if(movies.size()==codici_film.size()){
                             final MovieResults movieResults = new MovieResults();
                             final ArrayList<MovieResults.Result> res = movieResults.creaListaResults(movies);
+                            System.out.println("OOOOOOOOOOO"+res.get(0).getBackdropPath());
                             adapter = new MoviewAdapter(res, PlaylistSceltaActivity.this);
                             recyclerView.setAdapter(adapter);
 
@@ -157,7 +158,7 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(View view, int position) {
                                     myDialog = new Dialog(PlaylistSceltaActivity.this);
-                                    ctrl.ShowPopup(res.get(position),myDialog,utente);
+                                    ctrl.ShowPopup(res.get(position),myDialog,utente,PlaylistSceltaActivity.this);
                                 }
 
                                 @Override

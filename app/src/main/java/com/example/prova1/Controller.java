@@ -2,6 +2,7 @@ package com.example.prova1;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -117,7 +118,7 @@ public class Controller {
 
 
     }
-    public void ShowPopup(final MovieResults.Result movie, final Dialog myDialog, final Utente user) {
+    public void ShowPopup(final MovieResults.Result movie, final Dialog myDialog, final Utente user, final Activity activity) {
         myDialog.setContentView(R.layout.popupmovie);
         final Button addPreferiti;
         final Button addDaVedere;
@@ -162,6 +163,9 @@ public class Controller {
         textClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(activity!=null){
+               activity.recreate();}
+
                 myDialog.dismiss();
             }
         });
@@ -286,8 +290,8 @@ public class Controller {
         searchView= (SearchView) myDialog.findViewById(R.id.searchView2);
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) searchView.findViewById(id);
-        textView.setTextColor(activity.getResources().getColor(R.color.colorPrimaryDark));
-        textView.setHintTextColor(activity.getResources().getColor(R.color.colorPrimaryDark));
+        textView.setTextColor(activity.getResources().getColor(R.color.lightPrimary));
+        textView.setHintTextColor(activity.getResources().getColor(R.color.lightPrimary));
         final RecyclerView recyclerView;
         recyclerView = (RecyclerView)myDialog.findViewById(R.id.recyclerMoviesToAdd);
         LinearLayoutManager linearLayoutManager;
@@ -330,9 +334,8 @@ public class Controller {
                             recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(activity.getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-
-                                    ShowPopup(movieslist.get(position),myDialog ,user);
-
+                                    Dialog dial= new Dialog(activity);
+                                    ShowPopup(movieslist.get(position),dial ,user,null);
                                 }
 
                                 @Override
