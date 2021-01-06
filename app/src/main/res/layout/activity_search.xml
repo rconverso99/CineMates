@@ -23,7 +23,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerMovies"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="500dp"
+        android:backgroundTint="#dbdbdb"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
@@ -39,8 +40,6 @@
         android:searchIcon="@drawable/ic_searchview_search"
         android:closeIcon="@drawable/ic_searchview_close"
         android:searchHintIcon="@drawable/ic_searchview_search"
-
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +47,20 @@
 
     </SearchView>
 
+    <Button
+        android:id="@+id/buttonCercaUtenti"
+        android:layout_width="141dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/playlist_button"
+        android:text="Cerca Utenti"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

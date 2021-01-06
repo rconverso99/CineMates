@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,12 +62,20 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
         final Controller ctrl = new Controller();
         final MovieResults movieResults = new MovieResults();
 
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false);
+        progress.setProgressStyle(R.style.ProgressBar);
+        progress.show();
+
         final ArrayList<Integer> lista_codici_film = new ArrayList<>();
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<List<Note>> call = apiInterface.recupera_playlist(utente.getUsername());
         call.enqueue(new Callback<List<Note>>() {
             @Override
             public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+
 
                 if (response.isSuccessful() && response.body() != null) {
                     int count = 0;
@@ -81,8 +90,10 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
 
                         }
                     }
+                    progress.dismiss();
                     makeMovieList(lista_codici_film,utente);
                     if(count==1){
+                        progress.dismiss();
                         Toast toast = Toast.makeText(PlaylistSceltaActivity.this, "Questa playlist è vuota", Toast.LENGTH_LONG);
                         toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                         toast.show();
@@ -99,7 +110,7 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
       addButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              myDialogSearch = new Dialog(PlaylistSceltaActivity.this);
+              myDialogSearch = new Dialog(PlaylistSceltaActivity.this,R.style.PauseDialog);
              ctrl.showPopupSearch(PlaylistSceltaActivity.this,myDialogSearch,utente);
           }
       });
@@ -149,7 +160,6 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
                         if(movies.size()==codici_film.size()){
                             final MovieResults movieResults = new MovieResults();
                             final ArrayList<MovieResults.Result> res = movieResults.creaListaResults(movies);
-                            System.out.println("OOOOOOOOOOO"+res.get(0).getBackdropPath());
                             adapter = new MoviewAdapter(res, PlaylistSceltaActivity.this);
                             recyclerView.setAdapter(adapter);
 

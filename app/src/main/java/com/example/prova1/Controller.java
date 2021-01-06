@@ -299,7 +299,8 @@ public class Controller {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         final List<MovieResults.Result> movieslist= new ArrayList<>();
-        searchView.requestFocusFromTouch();
+        searchView.setFocusable(true);
+        searchView.setIconified(false);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -327,6 +328,11 @@ public class Controller {
                             MovieResults results = response.body();
                             final List<MovieResults.Result> listOfMovies = results.getResults();
                             movieslist.addAll(listOfMovies);
+                            if(movieslist.isEmpty()){
+                                Toast toast = Toast.makeText(activity.getApplicationContext(), "Nessun risultato trovato", Toast.LENGTH_SHORT);
+                                toast.getView().setBackgroundColor(activity.getResources().getColor(android.R.color.holo_red_dark));
+                                toast.show();
+                            }
                             final MoviewAdapter adapter;
                             adapter = new MoviewAdapter(movieslist, activity.getApplicationContext());
                             recyclerView.setAdapter(adapter);

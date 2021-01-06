@@ -78,7 +78,10 @@ SearchView searchView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         movieslist= new ArrayList<>();
-        searchView.requestFocusFromTouch();
+        searchView.setFocusable(true);
+        searchView.setIconified(false);
+
+        //searchView.requestFocusFromTouch();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -87,7 +90,7 @@ SearchView searchView;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(final String newText) {
 
                 if (newText == null || newText.matches("") || newText.matches(" ") || newText.contains("  ")) {
 
@@ -106,6 +109,11 @@ SearchView searchView;
                             MovieResults results = response.body();
                             final List<MovieResults.Result> listOfMovies = results.getResults();
                             movieslist.addAll(listOfMovies);
+                            if(movieslist.isEmpty()){
+                                Toast toast = Toast.makeText(SearchActivity.this, "Nessun risultato trovato", Toast.LENGTH_SHORT);
+                                toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                                toast.show();
+                            }
                             adapter = new MoviewAdapter(movieslist, SearchActivity.this);
                             recyclerView.setAdapter(adapter);
 
