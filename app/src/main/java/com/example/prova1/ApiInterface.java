@@ -90,6 +90,12 @@ public interface ApiInterface {
 
  );
 
+ @FormUrlEncoded
+ @POST("cercautente_aws.php")
+ Call<List<Note>> cercaUtente(
+         @Field("username") String username
+ );
+
 
 
 

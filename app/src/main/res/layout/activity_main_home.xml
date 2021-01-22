@@ -45,11 +45,13 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="80dp"
-            android:layout_marginLeft="90dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/playlist_button"
             android:drawableLeft="@drawable/ic_search"
-            android:paddingTop="34dip"
+            android:drawablePadding="10dp"
+            android:paddingTop="24dip"
+            android:paddingLeft="4dip"
             app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintStart_toEndOf="@+id/textNomeMenu" />
 

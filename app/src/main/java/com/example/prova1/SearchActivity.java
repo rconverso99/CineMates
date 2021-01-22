@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -167,6 +168,22 @@ SearchView searchView;
                 return false;
             }
         });
+
+        Button cercaUtentiBtn =(Button) findViewById(R.id.buttonCercaUtenti);
+        cercaUtentiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchActivity.this, CercaUtentiActivity.class);
+                intent.putExtra("utente", utente);
+                startActivity(intent);
+
+
+
+
+            }
+        });
+
+
     }
 
 
