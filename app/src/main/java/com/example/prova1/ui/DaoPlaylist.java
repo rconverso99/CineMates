@@ -36,6 +36,26 @@ public class DaoPlaylist {
 
     }
 
+    public void rimuoviPlaylist(String username, String tipo, Integer cod_movie){
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<Note> call = apiInterface.elimina_film(cod_movie,username,tipo);
+        call.enqueue(new Callback<Note>() {
+            @Override
+            public void onResponse(Call<Note> call, Response<Note> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Note> call, Throwable t) {
+
+            }
+        });
+
+
+
+
+    }
+
 
 
 

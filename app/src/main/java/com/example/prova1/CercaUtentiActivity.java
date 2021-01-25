@@ -18,7 +18,12 @@ import com.example.prova1.adapter.MoviewAdapter;
 import com.example.prova1.adapter.RecyclerItemClickListener;
 import com.example.prova1.adapter.UserAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +65,10 @@ RecyclerView recyclerUser;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
+
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -69,6 +76,8 @@ RecyclerView recyclerUser;
                 if (newText == null || newText.matches("") || newText.matches(" ") || newText.contains("  ")) {
 
                 } else {
+                    if(!userList.isEmpty()){
+                        userList.clear();}
                     final ArrayList<Note> listOfUsers = new ArrayList<Note>();
                     apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
                     Call<List<Note>> call = apiInterface.cercaUtente(newText);
@@ -76,9 +85,11 @@ RecyclerView recyclerUser;
                         @Override
                         public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
                             if (response.isSuccessful() && response.body() != null) {
-                               /* for(Note i : response.body()){
-                                    listOfUsers.add(i);
+                                for(Note i : response.body()){
+                                    if(!i.getUsername().matches(utente.getUsername())){
+                                        listOfUsers.add(i);}
                                 }
+                                userList.clear();
                                 userList.addAll(listOfUsers);
                                 if(userList.isEmpty()){
                                     Toast toast = Toast.makeText(CercaUtentiActivity.this, "Nessun risultato trovato", Toast.LENGTH_SHORT);
@@ -91,7 +102,14 @@ RecyclerView recyclerUser;
                                     @Override
                                     public void onItemClick(View view, int position) {
                                         Intent intent = new Intent(getApplicationContext(),UtenteSelezionatoActivity.class);
-                                        intent.putExtra("utente_selezionato", (Parcelable) userList.get(position));
+                                        Utente user_selezionato = new Utente();
+                                        user_selezionato.setNome(userList.get(position).getNome());
+                                        user_selezionato.setCognome(userList.get(position).getCognome());
+                                        user_selezionato.setUsername(userList.get(position).getUsername());
+                                        user_selezionato.setUrl_foto(userList.get(position).getFoto());
+                                        user_selezionato.setPassword(userList.get(position).getPassword());
+                                        user_selezionato.setEmail(userList.get(position).getEmail());
+                                        intent.putExtra("utente_selezionato", user_selezionato);
                                         intent.putExtra("utente",utente);
                                         startActivity(intent);
                                     }
@@ -100,7 +118,8 @@ RecyclerView recyclerUser;
                                     public void onLongItemClick(View view, int position) {
 
                                     }
-                                }));*/
+                                }));
+
                                 System.out.println("OOOOOOOOOOO"+response.body().get(0).getNome());
 
 
@@ -113,7 +132,7 @@ RecyclerView recyclerUser;
 
                         @Override
                         public void onFailure(Call<List<Note>> call, Throwable t) {
-                          t.printStackTrace();
+                            t.printStackTrace();
                         }
                     });
 
@@ -126,8 +145,7 @@ RecyclerView recyclerUser;
 
 
                 }
-                return false;
-            }
+                return false;}
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

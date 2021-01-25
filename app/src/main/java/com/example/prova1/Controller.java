@@ -1,5 +1,6 @@
 package com.example.prova1;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -193,8 +194,10 @@ public class Controller {
            @Override
            public void onClick(View v) {
                if(addPreferiti.getText().toString().matches("RIMUOVI DAI PREFERITI")){
-                   //RIMUOVI DALLA PLAYLIST
-                   //MODIFICA COLORI BOTTONE
+                    setButtonAggiungiPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"AGGIUNGI AI PREFERITI");
+                    DaoPlaylist daoPlaylist = new DaoPlaylist();
+                    daoPlaylist.rimuoviPlaylist(user.getUsername(),"pref",movie.getId());
+
 
 
                }else{
@@ -213,8 +216,10 @@ public class Controller {
             @Override
             public void onClick(View v) {
                 if(addDaVedere.getText().toString().matches("RIMUOVI DAI DA VEDERE")){
-                    //RIMUOVI DALLA PLAYLIST
-                    //MODIFICA COLORI BOTTONE
+                    setButtonAggiungiPlaylist(addDaVedere,myDialog,R.drawable.ic_davedere,"AGGIUNGI A DA VEDERE");
+                    DaoPlaylist daoPlaylist = new DaoPlaylist();
+                    daoPlaylist.rimuoviPlaylist(user.getUsername(),"davedere",movie.getId());
+
 
 
                 }else{
@@ -262,6 +267,18 @@ public class Controller {
         btn.setTextColor(Color.RED);
         int tintColor = ContextCompat.getColor(myDialog.getContext(), android.R.color.holo_red_dark);
 
+        Drawable drawable = ContextCompat.getDrawable(myDialog.getContext(), drawable_icon);
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable.mutate(), tintColor);
+        drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        btn.setCompoundDrawables(drawable, null, null, null);
+    }
+
+    public void setButtonAggiungiPlaylist(Button btn, final Dialog myDialog, int drawable_icon, String text){
+        btn.setText(text);
+        btn.setBackgroundResource(R.drawable.button_genre_family);
+        btn.setTextColor(myDialog.getContext().getResources().getColor(R.color.colorPrimaryDark));
+        int tintColor = ContextCompat.getColor(myDialog.getContext(), R.color.colorPrimaryDark);
         Drawable drawable = ContextCompat.getDrawable(myDialog.getContext(), drawable_icon);
         drawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(drawable.mutate(), tintColor);

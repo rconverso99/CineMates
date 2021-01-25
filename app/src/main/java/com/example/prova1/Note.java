@@ -26,6 +26,18 @@ public class Note {
     @SerializedName("tipo_playlist") private String tipo_playlist;
     @Expose
     @SerializedName("cod_film") private Integer cod_film;
+    @Expose
+    @SerializedName("segue_username") private String segue_username;
+    @Expose
+    @SerializedName("count") private Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public String getNome_playlist() {
         return nome_playlist;
@@ -114,6 +126,15 @@ public class Note {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public String getSegue_username() {
+        return segue_username;
+    }
+
+    public void setSegue_username(String segue_username) {
+        this.segue_username = segue_username;
+    }
+
 
     // nome_utente, cognome_utente, username, password_utente, email_utente
 }

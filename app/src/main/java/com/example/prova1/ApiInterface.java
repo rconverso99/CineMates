@@ -96,6 +96,43 @@ public interface ApiInterface {
          @Field("username") String username
  );
 
+ @FormUrlEncoded
+ @POST("eliminafilm_aws.php")
+ Call<Note> elimina_film(
+         @Field("cod_film") int cod_film,
+         @Field("username") String username,
+          @Field("tipo_playlist") String tipo_playlist
+ );
+
+ @FormUrlEncoded
+ @POST("seguiti_aws.php")
+ Call<List<Note>> elencaSeguiti(
+         @Field("username") String username
+ );
+
+ @FormUrlEncoded
+ @POST("contaseguiti_aws.php")
+ Call<List<Note>> contaSeguiti(
+         @Field("username") String username
+ );
+
+ @FormUrlEncoded
+ @POST("contafollower_aws.php")
+ Call<List<Note>> contaFollower(
+         @Field("segue_username") String username
+ );
+
+ @FormUrlEncoded
+ @POST("segueutente_aws.php")
+ Call<Note> segueUtente(
+         @Field("username") String username,
+         @Field("segue_username") String username_segue
+ );
+
+
+
+
+
 
 
 
