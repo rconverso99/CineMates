@@ -3,6 +3,7 @@ package com.example.prova1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -129,6 +131,35 @@ public class UtenteSelezionatoActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        seguiti_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(seguiti_button.getText().toString().matches("0\nSeguiti")){
+                    Toast toast = Toast.makeText(UtenteSelezionatoActivity.this, "Questo utente non ha seguiti", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                Controller ctrl = new Controller();
+                Dialog myDialog;
+                myDialog = new Dialog(UtenteSelezionatoActivity.this,R.style.PauseDialog);
+                ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"seguiti",utente);}
+            }
+        });
+
+        follower_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(follower_button.getText().toString().matches("0\nFollowers")){
+                    Toast toast = Toast.makeText(UtenteSelezionatoActivity.this, "Questo utente non ha followers", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Controller ctrl = new Controller();
+                    Dialog myDialog;
+                    myDialog = new Dialog(UtenteSelezionatoActivity.this,R.style.PauseDialog);
+                    ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"followers",utente);
+                }
+            }
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_utente_selezionato);
 

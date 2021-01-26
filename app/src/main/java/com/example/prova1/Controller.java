@@ -3,7 +3,9 @@ package com.example.prova1;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -23,6 +25,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prova1.adapter.MoviewAdapter;
 import com.example.prova1.adapter.RecyclerItemClickListener;
+import com.example.prova1.adapter.UserAdapter;
 import com.example.prova1.ui.DaoPlaylist;
 
 import org.w3c.dom.Node;
@@ -40,7 +45,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
@@ -386,6 +394,171 @@ public class Controller {
 
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
+    }
+
+    public void showUserPopup(final Activity activity, final Dialog myDialog, final Utente user, String tipo_categoria, final Utente utente_loggato){
+        myDialog.setContentView(R.layout.popupuser);
+        TextView textClose;
+        textClose =(TextView) myDialog.findViewById(R.id.textClose4);
+        textClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        final ArrayList<String> lista_username = new ArrayList<>();
+
+        if(tipo_categoria.matches("seguiti")){
+            lista_username.clear();
+            apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+            Call<List<Note>> call = apiInterface.seguiti(user.getUsername());
+            call.enqueue(new Callback<List<Note>>() {
+                @Override
+                public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+                    for(Note i: response.body()){
+                      lista_username.add(i.getSegue_username());
+
+
+
+                    }
+                    makeUserList(lista_username,activity,myDialog,user,utente_loggato);
+
+
+
+
+
+
+
+
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Note>> call, Throwable t) {
+
+                }
+            });
+
+
+
+
+
+        }else{
+            lista_username.clear();
+            apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+            Call<List<Note>> call = apiInterface.follower(user.getUsername());
+            call.enqueue(new Callback<List<Note>>() {
+                @Override
+                public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+                    for(Note i: response.body()){
+                        lista_username.add(i.getUsername());
+
+
+
+                    }
+                    makeUserList(lista_username,activity,myDialog,user,utente_loggato);
+
+
+
+
+
+
+
+
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Note>> call, Throwable t) {
+
+                }
+            });
+
+
+
+
+        }
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
+    }
+
+    public void makeUserList(final ArrayList<String> listaUsername, final Activity activity, Dialog myDialog, final Utente user,final Utente utente_loggato){
+
+        final RecyclerView recyclerView;
+        recyclerView = (RecyclerView)myDialog.findViewById(R.id.recyclerUserList);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager= new LinearLayoutManager(activity.getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        final ProgressDialog progress = new ProgressDialog(myDialog.getContext());
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false);
+        progress.setProgressStyle(R.style.ProgressBar);
+        progress.show();
+
+        final ArrayList <Note> lista_utenti= new ArrayList<>();
+        for ( String username : listaUsername){
+            apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+            Call<List<Note>> call = apiInterface.cercaUtente(username);
+            call.enqueue(new Callback<List<Note>>() {
+                @Override
+                public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+                    lista_utenti.add(response.body().get(0));
+                    if(lista_utenti.size()==listaUsername.size()){
+                        progress.dismiss();
+                        UserAdapter adapter = new UserAdapter(activity.getApplicationContext(),lista_utenti);
+                        recyclerView.setAdapter(adapter);
+                        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(activity.getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Intent intent = new Intent(activity.getApplicationContext(),UtenteSelezionatoActivity.class);
+                                Utente user_selezionato = new Utente();
+                                user_selezionato.setNome(lista_utenti.get(position).getNome());
+                                user_selezionato.setCognome(lista_utenti.get(position).getCognome());
+                                user_selezionato.setUsername(lista_utenti.get(position).getUsername());
+                                user_selezionato.setUrl_foto(lista_utenti.get(position).getFoto());
+                                user_selezionato.setPassword(lista_utenti.get(position).getPassword());
+                                user_selezionato.setEmail(lista_utenti.get(position).getEmail());
+                                if(!user_selezionato.getUsername().matches(utente_loggato.getUsername())){
+                                    intent.putExtra("utente_selezionato", user_selezionato);
+                                    intent.putExtra("utente",user);
+                                    activity.startActivity(intent);
+                                }else{
+                                    Toast toast = Toast.makeText(activity.getApplicationContext(), "Questo utente ti segue o è seguito da te", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+
+
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+                        }));
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Note>> call, Throwable t) {
+
+                }
+            });
+        }
+
+
+
+
+
+
+
     }
 
 

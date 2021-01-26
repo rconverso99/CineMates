@@ -129,6 +129,18 @@ public interface ApiInterface {
          @Field("segue_username") String username_segue
  );
 
+ @FormUrlEncoded
+ @POST("seguiti_aws.php")
+ Call<List<Note>> seguiti(
+         @Field("username") String username
+ );
+
+ @FormUrlEncoded
+ @POST("follower_aws.php")
+ Call<List<Note>> follower(
+         @Field("segue_username") String username
+ );
+
 
 
 
