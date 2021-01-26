@@ -92,7 +92,7 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
                     }
                     progress.dismiss();
                     makeMovieList(lista_codici_film,utente);
-                    if(count==1){
+                    if(count==0){
                         progress.dismiss();
                         Toast toast = Toast.makeText(PlaylistSceltaActivity.this, "Questa playlist è vuota", Toast.LENGTH_LONG);
                         toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
@@ -103,7 +103,10 @@ public class PlaylistSceltaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Note>> call, Throwable t) {
-
+                progress.dismiss();
+                Toast toast = Toast.makeText(PlaylistSceltaActivity.this, "Questa playlist è vuota", Toast.LENGTH_LONG);
+                toast.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                toast.show();
             }
         });
       addButton= findViewById(R.id.addMovie);

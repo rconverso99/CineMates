@@ -408,7 +408,10 @@ public class Controller {
         });
         final ArrayList<String> lista_username = new ArrayList<>();
 
-        if(tipo_categoria.matches("seguiti")){
+        TextView textTipo = myDialog.findViewById(R.id.textTipo);
+        textTipo.setText(tipo_categoria);
+
+        if(tipo_categoria.matches("Seguiti")){
             lista_username.clear();
             apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
             Call<List<Note>> call = apiInterface.seguiti(user.getUsername());
@@ -525,7 +528,7 @@ public class Controller {
                                 user_selezionato.setEmail(lista_utenti.get(position).getEmail());
                                 if(!user_selezionato.getUsername().matches(utente_loggato.getUsername())){
                                     intent.putExtra("utente_selezionato", user_selezionato);
-                                    intent.putExtra("utente",user);
+                                    intent.putExtra("utente",utente_loggato);
                                     activity.startActivity(intent);
                                 }else{
                                     Toast toast = Toast.makeText(activity.getApplicationContext(), "Questo utente ti segue o è seguito da te", Toast.LENGTH_SHORT);

@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UtenteSelezionatoActivity"></activity>
-        <activity android:name=".CercaUtentiActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
+        <activity android:name=".FilmInComuneActivity"></activity>
+        <activity android:name=".UtenteSelezionatoActivity" />
+        <activity
+            android:name=".CercaUtentiActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".PlaylistSceltaActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".GenreActivity" />

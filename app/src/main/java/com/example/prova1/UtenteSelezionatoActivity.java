@@ -142,7 +142,7 @@ public class UtenteSelezionatoActivity extends AppCompatActivity {
                 Controller ctrl = new Controller();
                 Dialog myDialog;
                 myDialog = new Dialog(UtenteSelezionatoActivity.this,R.style.PauseDialog);
-                ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"seguiti",utente);}
+                ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"Seguiti",utente);}
             }
         });
 
@@ -156,10 +156,24 @@ public class UtenteSelezionatoActivity extends AppCompatActivity {
                     Controller ctrl = new Controller();
                     Dialog myDialog;
                     myDialog = new Dialog(UtenteSelezionatoActivity.this,R.style.PauseDialog);
-                    ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"followers",utente);
+                    ctrl.showUserPopup(UtenteSelezionatoActivity.this,myDialog,utente_selezionato,"Followers",utente);
                 }
             }
         });
+
+        Button preferiti_in_comune_button = (Button) findViewById(R.id.buttonPreferitiInComune);
+        preferiti_in_comune_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),FilmInComuneActivity.class);
+                intent.putExtra("utente_selezionato", utente_selezionato);
+                intent.putExtra("utente",utente);
+                startActivity(intent);
+
+
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_utente_selezionato);
 

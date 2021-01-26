@@ -37,6 +37,20 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView"
             app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/textTipo"
+            android:layout_width="155dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="2dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

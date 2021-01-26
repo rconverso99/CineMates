@@ -105,8 +105,6 @@ public class SceltaEmailActivity extends AppCompatActivity {
                                                utente.setUrl_foto(image_url);
                                                utente.setEmail(email);
                                                dao_utente.inserisciUtente(utente);
-                                               dao_playlist.insertPlaylist(utente.getUsername(),"pref",0000);
-                                               dao_playlist.insertPlaylist(utente.getUsername(),"davedere",0000);
 
                                                Intent intent = new Intent(SceltaEmailActivity.this, MainHomeActivity.class);
                                                intent.putExtra("utente", utente);

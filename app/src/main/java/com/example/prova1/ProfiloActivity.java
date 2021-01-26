@@ -3,6 +3,7 @@ package com.example.prova1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -81,6 +83,35 @@ public class ProfiloActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Note>> call2, Throwable t) {
                 t.printStackTrace();
+            }
+        });
+
+        seguiti_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(seguiti_button.getText().toString().matches("0\nSeguiti")){
+                    Toast toast = Toast.makeText(ProfiloActivity.this, "Non hai seguiti da mostrare", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Controller ctrl = new Controller();
+                    Dialog myDialog;
+                    myDialog = new Dialog(ProfiloActivity.this,R.style.PauseDialog);
+                    ctrl.showUserPopup(ProfiloActivity.this,myDialog,utente,"Seguiti",utente);}
+            }
+        });
+
+        follower_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(follower_button.getText().toString().matches("0\nFollowers")){
+                    Toast toast = Toast.makeText(ProfiloActivity.this, "Non hai followers da mostrare", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    Controller ctrl = new Controller();
+                    Dialog myDialog;
+                    myDialog = new Dialog(ProfiloActivity.this,R.style.PauseDialog);
+                    ctrl.showUserPopup(ProfiloActivity.this,myDialog,utente,"Followers",utente);
+                }
             }
         });
 
