@@ -564,6 +564,38 @@ public class Controller {
 
     }
 
+    public boolean esisteUsername(String username){
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<List<Note>> call = apiInterface.cercaUtente(username);
+        final ArrayList<Note> listOfUsers = new ArrayList<Note>();
+        call.enqueue(new Callback<List<Note>>() {
+            @Override
+            public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    for(Note i : response.body()){
+                            listOfUsers.add(i);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Note>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        if(listOfUsers.isEmpty()){
+            System.out.println("OOOOOOOOOOOOOOOOOOOOO FALSE");
+            return false;
+        }else{
+            System.out.println("OOOOOOOOOOOOOOOOOOOOO TRUE");
+            return true;}
+
+
+
+
+    }
+
 
 
 }

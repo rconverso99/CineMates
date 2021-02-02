@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,9 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -65,6 +69,41 @@ public class MainActivity extends AppCompatActivity {
         View someView = findViewById(R.id.barra_superiore);
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(R.color.lightGray));
+
+        myFBbutton = (com.facebook.login.widget.LoginButton) findViewById(R.id.login_button);
+
+
+
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+
+        //myFBbutton.setPermissions(Arrays.asList(""));
+         myFBbutton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+             @Override
+             public void onSuccess(LoginResult loginResult) {
+               Log.d("Project","Login Successful!");
+
+
+
+
+
+
+
+
+
+
+             }
+
+             @Override
+             public void onCancel() {
+                 Log.d("Project","Login Canceled");
+             }
+
+             @Override
+             public void onError(FacebookException error) {
+                 Log.d("Project","Login Error");
+             }
+         });
+
         TextView textRegistrati = (TextView) findViewById(R.id.textRegistrati);
         textRegistrati.setPaintFlags(textRegistrati.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         textRegistrati.setOnClickListener(new View.OnClickListener() {
@@ -77,52 +116,8 @@ public class MainActivity extends AppCompatActivity {
         });
         textUsername = (EditText) findViewById(R.id.editTextUsername);
         textPassword = (EditText) findViewById(R.id.editTextPassword);
-        final AccessToken  accessToken= AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn =  accessToken!= null && !accessToken.isExpired();
 
 
-
-
-
-        myFBbutton = (com.facebook.login.widget.LoginButton) findViewById(R.id.login_button);
-        myFBbutton.setReadPermissions("email");
-
-
-
-
-
-
-
-
-        myFBbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("public_profile"));
-            }
-        });
-
-        if (isLoggedIn){
-
-        }
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Toast.makeText(getApplicationContext(),"Fb success", LENGTH_SHORT).show();
-                        // App code
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
         myButton = (Button) findViewById(R.id.login);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +182,81 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+
+        GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+             Log.d("Project", object.toString());
+                try {
+                    String nome_completo = object.getString("name");
+                    String nome = object.getString("first_name");
+                    String cognome = object.getString("last_name");
+                    String id = object.getString("id");
+                    String email = object.getString("email");
+                    String foto = "https://graph.facebook.com/"+object.getString("id")+"/picture?type=large";
+                    int index = email.indexOf('@');
+                    String username = email.substring(0,index)+id.substring(0,3);
+                    Controller ctrl = new Controller();
+                    if(ctrl.esisteUsername(username)){
+
+                        Utente user = new Utente();
+                        user.setNome(nome);
+                        user.setCognome(cognome);
+                        user.setUsername(username);
+                        user.setEmail(email);
+                        user.setUrl_foto(foto);
+                        Intent intent = new Intent(MainActivity.this, MainHomeActivity.class);
+                        intent.putExtra("utente", user);
+                        startActivity(intent);
+
+                    }else {
+
+                        Utente user = new Utente();
+                        user.setNome(nome);
+                        user.setCognome(cognome);
+                        user.setUsername(username);
+                        user.setEmail(email);
+                        user.setUrl_foto(foto);
+
+                        DaoUtente dao_utente = new DaoUtente();
+                        dao_utente.inserisciUtente(user);
+
+                        Intent intent = new Intent(MainActivity.this, MainHomeActivity.class);
+                        intent.putExtra("utente", user);
+                        startActivity(intent);
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+           Bundle bundle = new Bundle();
+           bundle.putString("fields","name,id,first_name,last_name,email,picture");
+        graphRequest.setParameters(bundle);
+        graphRequest.executeAsync();
+
+
     }
+    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+        @Override
+        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+            if(currentAccessToken == null){
+                LoginManager.getInstance().logOut();
+            }
+        }
+    };
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
+    }
+
 
 
 

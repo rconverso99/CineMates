@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Prova1</string>
-    <string name="facebook_app_id">211715260472880</string>
-    <string name="fb_login_protocol_scheme">fb211715260472880</string>
+    <string name="facebook_app_id">426006561807381</string>
+    <string name="fb_login_protocol_scheme">fb426006561807381</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
