@@ -55,6 +55,7 @@ SearchView searchView;
     public static String API_KEY = "2e3034b8c110830b946972c7d30f5cb5";
     public static String LANGUAGE = "ita";
     List<MovieResults.Result> movieslist;
+    Utente user = new Utente();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,8 @@ SearchView searchView;
         final Controller ctrl = new Controller();
         Intent intent = getIntent();
         final Utente utente = intent.getParcelableExtra("utente");
+
+        user = utente;
 
 
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -182,6 +185,15 @@ SearchView searchView;
 
             }
         });
+
+
+    }
+
+    public void onBackPressed() {
+
+        Intent setIntent = new Intent(SearchActivity.this, MainActivity.class);
+        setIntent.putExtra("utente", user);
+        startActivity(setIntent);
 
 
     }

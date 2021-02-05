@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         myFBbutton = (com.facebook.login.widget.LoginButton) findViewById(R.id.login_button);
 
 
-
         CallbackManager callbackManager = CallbackManager.Factory.create();
 
         //myFBbutton.setPermissions(Arrays.asList(""));
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
              @Override
              public void onSuccess(LoginResult loginResult) {
                Log.d("Project","Login Successful!");
-
 
 
 
@@ -104,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
              }
          });
 
+        LoginManager.getInstance().logOut();
         TextView textRegistrati = (TextView) findViewById(R.id.textRegistrati);
         textRegistrati.setPaintFlags(textRegistrati.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         textRegistrati.setOnClickListener(new View.OnClickListener() {
@@ -175,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
             }});
 
 
-
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -188,6 +185,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCompleted(JSONObject object, GraphResponse response) {
              Log.d("Project", object.toString());
                 try {
+
+
+
                     String nome_completo = object.getString("name");
                     String nome = object.getString("first_name");
                     String cognome = object.getString("last_name");
@@ -258,23 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+}
 
 
 

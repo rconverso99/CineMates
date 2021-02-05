@@ -44,4 +44,24 @@ public class DaoUtente {
 
     }
 
+    public void unfollow(String username, String username_segue){
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<Note> call = apiInterface.unfollow(username,username_segue);
+        call.enqueue(new Callback<Note>() {
+            @Override
+            public void onResponse(Call<Note> call, Response<Note> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Note> call, Throwable t) {
+
+            }
+        });
+
+
+
+
+    }
+
 }

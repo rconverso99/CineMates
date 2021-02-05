@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ RecyclerView recyclerUser;
     private LinearLayoutManager linearLayoutManager;
     private UserAdapter adapter;
     List<Note> userList;
+    Utente user = new Utente();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ RecyclerView recyclerUser;
         recyclerUser.setHasFixedSize(true);
         recyclerUser.setLayoutManager(linearLayoutManager);
         userList= new ArrayList<>();
+        user = utente;
 
 
 
@@ -177,6 +180,24 @@ RecyclerView recyclerUser;
             }
         });
 
+        Button btnCercaFilm = findViewById(R.id.buttonCercaFilm);
+        btnCercaFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CercaUtentiActivity.this, SearchActivity.class);
+                intent.putExtra("utente", utente);
+                startActivity(intent);
+            }
+        });
+
+        }
+
+
+    public void onBackPressed(){
+
+        Intent setIntent = new Intent(CercaUtentiActivity.this, MainActivity.class);
+        setIntent.putExtra("utente", user);
+        startActivity(setIntent);
 
     }
 }

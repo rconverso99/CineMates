@@ -109,6 +109,8 @@ public class UtenteSelezionatoActivity extends AppCompatActivity {
                     dao_utente.segue(utente.getUsername(), utente_selezionato.getUsername());
                 }else{
                     //ELIMINA SEGUITO
+                    DaoUtente dao_utente = new DaoUtente();
+                    dao_utente.unfollow(utente.getUsername(), utente_selezionato.getUsername());
                     segui_button.setText("Segui");
                     segui_button.setTextColor(getResources().getColor(R.color.white0));
                     segui_button.setBackgroundResource(R.drawable.follow_button);

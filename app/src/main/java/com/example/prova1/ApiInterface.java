@@ -141,6 +141,13 @@ public interface ApiInterface {
          @Field("segue_username") String username
  );
 
+ @FormUrlEncoded
+ @POST("unfollow_aws.php")
+ Call<Note> unfollow(
+         @Field("username") String username,
+         @Field("segue_username") String username_segue
+ );
+
 
 
 
