@@ -1,20 +1,12 @@
 package com.example.prova1;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -26,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,9 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prova1.adapter.MoviewAdapter;
 import com.example.prova1.adapter.RecyclerItemClickListener;
 import com.example.prova1.adapter.UserAdapter;
-import com.example.prova1.ui.DaoPlaylist;
-
-import org.w3c.dom.Node;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,10 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
@@ -57,9 +42,37 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class Controller {
 
+    //ENTITY
+    Playlist playlist_utente;
+    Utente utente;
+    Note note;
+    MovieResults movie;
+
+    //BOUNDARY
+    CategoryActivity category_act;
+    CercaUtentiActivity cerca_utenti_act;
+    ChooseGenreActivity chooseGenreActivity;
+    FilmInComuneActivity filmInComuneActivity;
+    GenreActivity genreActivity;
+    MainActivity mainActivity;
+    MainHomeActivity mainHomeActivity;
+    PlaylistActivity playlistActivity;
+    PlaylistSceltaActivity playlistSceltaActivity;
+    ProfiloActivity profiloActivity;
+    RegistrazioneActivity registrazioneActivity;
+    SceltaEmailActivity sceltaEmailActivity;
+    SearchActivity searchActivity;
+    UtenteSelezionatoActivity utenteSelezionatoActivity;
+
+    //CONTROL
     ApiInterface apiInterface;
+    DaoPlaylist daoPlaylist;
+    DaoUtente daoUtente;
+
 
     public boolean verificaRegistrazione(String nome, String cognome, String username, String password, String conferma_password, Activity context) {
         {
@@ -93,6 +106,8 @@ public class Controller {
 
 
     }
+
+
 
 
     public FileOutputStream getFileFromImage(Bitmap image, Activity context) throws IOException {
@@ -140,9 +155,6 @@ public class Controller {
             public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     for(Note i : response.body()){
-                        System.out.println("PROVAAA"+i.getCod_film());
-                        System.out.println("PROVAAA"+i.getTipo_playlist());
-                        System.out.println("PROVAAA"+user.getUsername());
                         if(i.getTipo_playlist().matches("pref")){
                             if(i.getCod_film()!= 0 && i.getCod_film().equals(movie.getId())){
                                 setButtonRimuoviPlaylist(addPreferiti,myDialog,R.drawable.ic_preferito,"RIMUOVI DAI PREFERITI");

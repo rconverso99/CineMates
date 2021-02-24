@@ -1,5 +1,8 @@
 package com.example.prova1;
 
+import android.app.Activity;
+import android.content.Context;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,4 +17,10 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+
+
+
+
 }

@@ -3,7 +3,9 @@ package com.example.prova1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,6 +33,7 @@ public class ProfiloActivity extends AppCompatActivity {
     ImageView fotoProfilo;
     Button seguiti_button;
     Button follower_button;
+    Button logout;
     ApiInterface apiInterface;
     Utente user = new Utente();
 
@@ -148,9 +151,28 @@ public class ProfiloActivity extends AppCompatActivity {
                 return false;
             }
         });
+        logout= findViewById(R.id.buttonLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ProfiloActivity.this)
+                        .setTitle("Conferma")
+                        .setMessage("Sei sicuro di voler effettuare il LogOut?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(intent);
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
+            }
+        });
+
+
     }
 
-    //DA UTILIZZARE PER RECUPERARE LE IMMAGINI
+
     public class RetrieveImageTask extends AsyncTask<String , Void, Bitmap> {
 
         private Exception exception;

@@ -191,7 +191,7 @@ SearchView searchView;
 
     public void onBackPressed() {
 
-        Intent setIntent = new Intent(SearchActivity.this, MainActivity.class);
+        Intent setIntent = new Intent(SearchActivity.this, MainHomeActivity.class);
         setIntent.putExtra("utente", user);
         startActivity(setIntent);
 

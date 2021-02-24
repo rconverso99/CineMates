@@ -12,37 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FilmInComuneActivity"></activity>
-        <activity android:name=".UtenteSelezionatoActivity" />
+        <activity android:name=".FilmInComuneActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".UtenteSelezionatoActivity" android:screenOrientation="portrait" />
         <activity
-            android:name=".CercaUtentiActivity"
+            android:name=".CercaUtentiActivity" android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".PlaylistSceltaActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".GenreActivity" />
-        <activity android:name=".ChooseGenreActivity" />
+        <activity android:name=".PlaylistSceltaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" />
+        <activity android:name=".GenreActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ChooseGenreActivity" android:screenOrientation="portrait"/>
         <activity
-            android:name=".SearchActivity"
+            android:name=".SearchActivity" android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".SceltaFotoActivity" />
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".ProfiloActivity" />
-        <activity android:name=".PlaylistActivity" />
-        <activity android:name=".MainHomeActivity" />
+        <activity android:name=".CategoryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ProfiloActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PlaylistActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".MainHomeActivity"  android:screenOrientation="portrait"/>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
         <activity android:name="com.bottomnavigationview.fragments.HomeFragment" />
-        <activity android:name=".SceltaEmailActivity" />
-        <activity android:name=".RegistrazioneActivity" />
+        <activity android:name=".SceltaEmailActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".RegistrazioneActivity"  android:screenOrientation="portrait"/>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/> <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" /> <activity android:name="com.facebook.CustomTabActivity" android:exported="true"> <intent-filter> <action android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" /> <data android:scheme="@string/fb_login_protocol_scheme" /> </intent-filter> </activity>
 
-        <activity
-            android:name=".RicercaFilm"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SplashScreenActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

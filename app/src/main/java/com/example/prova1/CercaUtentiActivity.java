@@ -195,7 +195,7 @@ RecyclerView recyclerUser;
 
     public void onBackPressed(){
 
-        Intent setIntent = new Intent(CercaUtentiActivity.this, MainActivity.class);
+        Intent setIntent = new Intent(CercaUtentiActivity.this, MainHomeActivity.class);
         setIntent.putExtra("utente", user);
         startActivity(setIntent);
 

@@ -1,4 +1,4 @@
-package com.example.prova1.ui;
+package com.example.prova1;
 
 import android.content.ClipData;
 
