@@ -52,28 +52,20 @@ Il sistema è strutturato su **tre livelli**: Client, Server e Database, garante
 CineMates20 combina la gestione dei film con funzionalità sociali avanzate, fornendo agli utenti un'esperienza completa di scoperta, condivisione e confronto dei propri interessi cinematografici.
 
 Demo Android:
-<img width="990" height="1883" alt="image" src="https://github.com/user-attachments/assets/97a859b2-33f0-4bad-8e38-6064fe9a8778" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/36b5e9f8-6323-4d7f-8755-caf0675b5987" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/6c4eebae-1e26-4a8b-9d2e-026fe340f45f" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/81b2e3dc-8853-494d-8904-ff07f2367a7e" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/c1eb2922-fc19-4ddd-9595-6821c7e51418" />
+<img src="https://github.com/user-attachments/assets/97a859b2-33f0-4bad-8e38-6064fe9a8778" width="400" />
+<img src="https://github.com/user-attachments/assets/36b5e9f8-6323-4d7f-8755-caf0675b5987" width="400" />
+<img src="https://github.com/user-attachments/assets/6c4eebae-1e26-4a8b-9d2e-026fe340f45f" width="400" />
+<img src="https://github.com/user-attachments/assets/81b2e3dc-8853-494d-8904-ff07f2367a7e" width="400" />
+<img src="https://github.com/user-attachments/assets/c1eb2922-fc19-4ddd-9595-6821c7e51418" width="400" />
 
 Demo Desktop:
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/17d6dcad-6238-48ad-8167-e08e5e8242d1" />
+<img src="https://github.com/user-attachments/assets/17d6dcad-6238-48ad-8167-e08e5e8242d1" width="400" />
+<img src="https://github.com/user-attachments/assets/05b07c97-a1ac-4e48-89bc-92a16b910eee" width="400" />
+<img src="https://github.com/user-attachments/assets/d329bcec-bf02-4dcb-ab35-7ab531d5727c" width="400" />
+<img src="https://github.com/user-attachments/assets/96947af1-60ae-474f-a481-ee969c560694" width="400" />
+<img src="https://github.com/user-attachments/assets/ac34b2de-9b73-474f-b2fd-a4cfa948806b" width="400" />
+<img src="https://github.com/user-attachments/assets/f659147c-6ea4-43f1-8c40-a0813cbc1919" width="400" />
 
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/05b07c97-a1ac-4e48-89bc-92a16b910eee" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/d329bcec-bf02-4dcb-ab35-7ab531d5727c" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/96947af1-60ae-474f-a481-ee969c560694" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/ac34b2de-9b73-474f-b2fd-a4cfa948806b" />
-
-<img width="941" height="1889" alt="image" src="https://github.com/user-attachments/assets/f659147c-6ea4-43f1-8c40-a0813cbc1919" />
 
 
 
