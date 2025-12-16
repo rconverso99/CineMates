@@ -52,12 +52,30 @@ Il sistema è strutturato su **tre livelli**: Client, Server e Database, garante
 CineMates20 combina la gestione dei film con funzionalità sociali avanzate, fornendo agli utenti un'esperienza completa di scoperta, condivisione e confronto dei propri interessi cinematografici.
 
 Demo Android:
-<img src="https://github.com/user-attachments/assets/97a859b2-33f0-4bad-8e38-6064fe9a8778" width="400" />
-<img src="https://github.com/user-attachments/assets/36b5e9f8-6323-4d7f-8755-caf0675b5987" width="400" />
-<img src="https://github.com/user-attachments/assets/6c4eebae-1e26-4a8b-9d2e-026fe340f45f" width="400" />
-<img src="https://github.com/user-attachments/assets/81b2e3dc-8853-494d-8904-ff07f2367a7e" width="400" />
-<img src="https://github.com/user-attachments/assets/c1eb2922-fc19-4ddd-9595-6821c7e51418" width="400" />
+<img width="275" height="574" alt="image" src="https://github.com/user-attachments/assets/e38ea408-0b41-4d6b-8356-3a789964e084" />
 
+<img width="273" height="576" alt="image" src="https://github.com/user-attachments/assets/c9e250e5-8d55-4fb6-b37b-d049dfa95048" />
+
+<img width="270" height="576" alt="image" src="https://github.com/user-attachments/assets/f0fbbf5e-1796-4351-bd57-c43827f3cbca" />
+
+<img width="270" height="580" alt="image" src="https://github.com/user-attachments/assets/40cbdf16-88d2-4bb0-94ae-602f62ff69d0" />
+
+<img width="274" height="576" alt="image" src="https://github.com/user-attachments/assets/ada41da8-1cfb-44a4-9e0e-0647e8293dd0" />
+
+
+
+Demo Desktop:
+<img width="451" height="327" alt="image" src="https://github.com/user-attachments/assets/241235c6-6a2e-4fe0-b76d-91e0773f91d6" />
+
+<img width="454" height="327" alt="image" src="https://github.com/user-attachments/assets/b7104e35-448d-4257-9b12-1d619440cd18" />
+
+<img width="453" height="326" alt="image" src="https://github.com/user-attachments/assets/963b2b30-ad3e-4d39-a2b5-be8a2520355a" />
+
+<img width="452" height="327" alt="image" src="https://github.com/user-attachments/assets/066acc10-c703-4313-996f-fe6f1d8f906e" />
+
+<img width="453" height="327" alt="image" src="https://github.com/user-attachments/assets/c657febb-7eab-4975-a9e7-83cffc926e9c" />
+
+<img width="451" height="325" alt="image" src="https://github.com/user-attachments/assets/c5daf6b2-de94-463b-a954-ee5617fc9e7e" />
 
 
 
