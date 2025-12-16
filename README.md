@@ -51,7 +51,9 @@ Il sistema è strutturato su **tre livelli**: Client, Server e Database, garante
 
 CineMates20 combina la gestione dei film con funzionalità sociali avanzate, fornendo agli utenti un'esperienza completa di scoperta, condivisione e confronto dei propri interessi cinematografici.
 
-Demo Android:
+# Demo Android:
+
+
 <img width="275" height="574" alt="image" src="https://github.com/user-attachments/assets/e38ea408-0b41-4d6b-8356-3a789964e084" />
 
 <img width="273" height="576" alt="image" src="https://github.com/user-attachments/assets/c9e250e5-8d55-4fb6-b37b-d049dfa95048" />
@@ -64,7 +66,9 @@ Demo Android:
 
 
 
-Demo Desktop:
+# Demo Desktop:
+
+
 <img width="451" height="327" alt="image" src="https://github.com/user-attachments/assets/241235c6-6a2e-4fe0-b76d-91e0773f91d6" />
 
 <img width="454" height="327" alt="image" src="https://github.com/user-attachments/assets/b7104e35-448d-4257-9b12-1d619440cd18" />
