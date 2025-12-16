@@ -58,13 +58,6 @@ Demo Android:
 <img src="https://github.com/user-attachments/assets/81b2e3dc-8853-494d-8904-ff07f2367a7e" width="400" />
 <img src="https://github.com/user-attachments/assets/c1eb2922-fc19-4ddd-9595-6821c7e51418" width="400" />
 
-Demo Desktop:
-<img src="https://github.com/user-attachments/assets/17d6dcad-6238-48ad-8167-e08e5e8242d1" width="400" />
-<img src="https://github.com/user-attachments/assets/05b07c97-a1ac-4e48-89bc-92a16b910eee" width="400" />
-<img src="https://github.com/user-attachments/assets/d329bcec-bf02-4dcb-ab35-7ab531d5727c" width="400" />
-<img src="https://github.com/user-attachments/assets/96947af1-60ae-474f-a481-ee969c560694" width="400" />
-<img src="https://github.com/user-attachments/assets/ac34b2de-9b73-474f-b2fd-a4cfa948806b" width="400" />
-<img src="https://github.com/user-attachments/assets/f659147c-6ea4-43f1-8c40-a0813cbc1919" width="400" />
 
 
 
