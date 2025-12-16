@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfiloActivity">
+
+    <Button
+        android:id="@+id/buttonSeguitiSelected"
+        android:layout_width="116dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/follower_button"
+        android:gravity="center"
+        android:text="0\n Seguiti"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_utente_selezionato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@drawable/selector"
+        app:itemIconTint="#FF6615"
+        app:itemTextColor="#FF6615"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu='@menu/menu_navigation' />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfiloSelected"
+        android:layout_width="205dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="48dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sceglifoto"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUsernameSelected"
+        android:layout_width="219dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Username"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfiloSelected" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUsernameSelected" />
+
+    <Button
+        android:id="@+id/buttonFollowerSelected"
+        android:layout_width="116dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/follower_button"
+        android:gravity="center"
+        android:text=" 0\nFollowers"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/buttonSegui"
+        android:layout_width="118dp"
+        android:layout_height="161dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/follow_button"
+        android:gravity="center"
+        android:text="Segui"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/buttonPreferitiInComune"
+        android:layout_width="289dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/playlist_button"
+        android:drawableRight="@drawable/ic_heart"
+        android:gravity=""
+        android:paddingLeft="40dp"
+        android:textStyle="bold"
+        android:text="Preferiti in comune"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "865673392990",
+    "project_id": "cinemates20-497b0",
+    "storage_bucket": "cinemates20-497b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865673392990:android:dafdc08c8834b3999d95cf",
+        "android_client_info": {
+          "package_name": "com.example.prova1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865673392990-d3gpdgbcqt0b1nh1qlg6a7eu88ji465c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPd3cj4anmOJyxsl81jbFElPurjAMZ9jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865673392990-d3gpdgbcqt0b1nh1qlg6a7eu88ji465c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
